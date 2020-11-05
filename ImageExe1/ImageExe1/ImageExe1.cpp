@@ -4,70 +4,47 @@
 #include <gl/gl.h>
 #include <math.h>
 #define M_PI 3.14159265358979 // 円周率
-#define PART 100 // 分割数
+#define PART 150 // 分割数
 
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    int n = PART;
+    int i = PART;
+    double rate;
+    double x, y, r = 0.5;
+    double xbias = 0.5;
+    double ybias = 0.25;
+    // 上胴体
+    glColor3f(1.0, 1.0, 1.0); // 描画物体に白色を設定
+    glBegin(GL_POLYGON); // ポリゴンの描画
+    for (i = 0; i < n; i++) {
+        // 座標を計算
+        rate = (double)i / n;
+        x = xbias + r * cos(2.0 * M_PI * rate);
+        y = ybias + r * sin(2.0 * M_PI * rate);
+        if (i <= 75) {
+            glVertex3f(x, y, 0.0); // 頂点座標を指定
+        }
+    }
 
-    // 軸
-    glBegin(GL_TRIANGLE_STRIP);
-    glColor3d(0.4, 1.0, 0.3);
-    glVertex2d(-0.05, -0.8);
-    glVertex2d(0.05, -0.8);
-    glVertex2d(-0.05, -1.2);
-    glVertex2d(0.05, -1.3);
-    glVertex2d(-0.08, -1.4);
-    glVertex2d(-0.03, -1.5);
-    glEnd();
+    // 下胴体
+    glColor3f(1.0, 1.0, 1.0); // 描画物体に白色を設定
+    glBegin(GL_POLYGON); // ポリゴンの描画
+    r = 1.0;
+    for (i = 0; i < n; i++) {
+        // 座標を計算
+        rate = (double)i / n;
+        x = r * cos(2.0 * M_PI * rate);
+        y = r * sin(2.0 * M_PI * rate);
+        if (i >= 90) {
+            glVertex3f(x, y, 0.0); // 頂点座標を指定
+        }
+    }
 
-    // 右葉っぱ
-    glBegin(GL_TRIANGLES);
-    glColor3d(0.2, 0.5, 0.3);
-    glVertex2d(-0.03, -1.5);
-    glVertex2d(0.38, -1.0);
-    glVertex2d(1.0, -1.1);
-    glColor3d(0.2, 0.6, 0.3);
-    glVertex2d(-0.03, -1.5);
-    glVertex2d(0.65, -1.4);
-    glVertex2d(1.0, -1.1);
-    glEnd();
+    // 嘴
 
-    // 左葉っぱ
-    glBegin(GL_TRIANGLES);
-    glColor3d(0.2, 0.6, 0.3);
-    glVertex2d(-0.03, -1.5);
-    glVertex2d(-0.40, -1.0);
-    glVertex2d(-1.0, -1.1);
-    glColor3d(0.2, 0.5, 0.3);
-    glVertex2d(-0.03, -1.5);
-    glVertex2d(-0.80, -1.4);
-    glVertex2d(-1.0, -1.1);
-    glEnd();
-
-    // 花びら
-    glColor3d(1.0, 0.0, 0.0);
-    glBegin(GL_TRIANGLE_FAN);
-    glColor3d(1.0, 1.0, 1.0); // 白
-    glVertex2d(0.0, 0.0);
-    glColor3d(1.0, 0.0, 0.0); // 赤
-    glVertex2d(0.0, 1.0);
-    glColor3d(0.8, 0.0, 0.0); // 赤
-    glVertex2d(0.6, 0.6);
-    glColor3d(1.0, 0.0, 0.0); // 赤
-    glVertex2d(1.0, 0.0);
-    glColor3d(0.8, 0.0, 0.0); // 赤
-    glVertex2d(0.6, -0.6);
-    glColor3d(1.0, 0.0, 0.0); // 赤
-    glVertex2d(0.0, -1.0);
-    glColor3d(0.8, 0.0, 0.0); // 赤
-    glVertex2d(-0.6, -0.6);
-    glColor3d(1.0, 0.0, 0.0); // 赤
-    glVertex2d(-1.0, 0.0);
-    glColor3d(0.8, 0.0, 0.0); // 赤
-    glVertex2d(-0.6, 0.6);
-    glColor3d(1.0, 0.0, 0.0); // 赤
-    glVertex2d(0.0, 1.0);
+    
     glEnd();
 
     glFlush();
