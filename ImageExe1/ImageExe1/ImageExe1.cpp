@@ -32,21 +32,45 @@ void makeCircle(double x, double y, double r, double xbias, double ybias, int mo
     glEnd();
 }
 
-void drawWing(int i) {
-    glColor3f(1.0, 1.0, 1.0); // 描画物体に白色を設定
-    glBegin(GL_POLYGON); // ポリゴンの描画　
+void drawHideWing(int i) {
     if (i == 1) {
-        glVertex3f(-1.0, 0.3, 0.0);
-        glVertex3f(0.25, -0.1, 0.0);
-        glVertex3f(0.25, 0.08125, 0.0);//0.08125
+        glBegin(GL_POLYGON); // ポリゴンの描画
+        glColor3f(0.33, 0.8, 0.97); // 描画物体に背景色を設定
+        glVertex3f(-0.87, 0.22, 0.0);
+        glVertex3f(-0.9, 0.20, 0.0);
+        glVertex3f(-0.91, 0.10, 0.0);
+
+        glVertex3f(-0.7, 0.15, 0.0);
+        glEnd();
     }
-    else {
-        double x = (double)i - 1;
-        glVertex3f(-1.0, 0.3 - x * 0.2, 0.0);
-        glVertex3f(0.25, x * -0.18 + 0.08, 0.0);
-        glVertex3f(0.25, -0.1 - 0.18 * x, 0.0);//0.08125
+    else if (i == 2) {
+        glBegin(GL_POLYGON); // ポリゴンの描画
+        glColor3f(0.33, 0.78, 0.97); // 描画物体に背景色を設定
+
+        glVertex3f(-0.9, -0.1, 0.0);
+        glVertex3f(-0.85, -0.2, 0.0);
+        glVertex3f(-0.86, -0.22, 0.0);
+
+        glVertex3f(-0.7, -0.2, 0.0);
+        glEnd();
     }
-    glEnd();
+    else if(i == 3) {
+        glBegin(GL_POLYGON); // ポリゴンの描画
+        glColor3f(0.33, 0.75, 0.97); // 描画物体に背景色を設定
+        
+        glVertex3f(-0.75, -0.4, 0.0);
+        glVertex3f(-0.7, -0.45, 0.0);
+        glVertex3f(-0.58, -0.55, 0.0);
+
+        glVertex3f(-0.45, -0.5, 0.0);
+        glEnd();
+    }
+
+    
+}
+
+void drawOverWing() {
+    makeCircle(0.0, 0.0, 0.7, -0.2, 0.05, 1, 45);
 }
 
 void drawBackground() {
@@ -106,9 +130,10 @@ void display(void)
     // 下嘴
     drawDownBeak();
     // 羽
-    drawWing(1);
-    drawWing(2);
-    drawWing(3);
+    drawOverWing();
+    drawHideWing(1);
+    drawHideWing(2);
+    drawHideWing(3);
     // 空白部分
     drawSpace();
     glFlush();
