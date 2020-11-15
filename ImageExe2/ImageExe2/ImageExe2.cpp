@@ -149,15 +149,16 @@ void display(void)
     glPushMatrix();
     //	mqoCallModel(model);
     glTranslatef(0, 0, -10);
-    for (i = 249; i >= 0; i--) {
-        if (i <= 90)
-            tori(i, 0, i, i);
-        else if (i < 180)
-            tori(i - 90, 0, i - 90, i);
-        else
-            tori(0, i, 0, i);
+     for (i = 249; i >= 0; i--) {
+         if (i <= 90)
+             tori(i, 0, i, i);
+         else if (i < 180)
+             tori(i - 90, 0, i - 90, i);
+         else
+             tori(0, i, 0, i);
 
-    }
+     }
+    //tori(0,0,0,0);
     glPopMatrix();
 
     glutSwapBuffers();
@@ -179,7 +180,7 @@ void display(void)
         if (++r >= 360) {
             /* 一周回ったらアニメーションを止める */
             r = 0;
-            glutIdleFunc(0);
+            //glutIdleFunc(0);
         }
     }
 }

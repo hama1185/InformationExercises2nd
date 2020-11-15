@@ -6,11 +6,17 @@
 GLfloat Black[] = { 0, 0, 0, 1.0 };
 GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat Gray[] = { 0.30, 0.30, 0.30, 1.0 };
+GLfloat BigPost[] = {0.752, 0.721, 0.564, 1.0 };
+GLfloat SmallPost[] = { 0.819, 0.745, 0.521, 1.0 };
+
+void post(float height) {
+    
+}
 
 void cylinder(float radius, float height, int sides)
 {
     double pi = 3.1415;
-    //ã–Ê
+    //ä¸Šé¢
     glNormal3d(0.0, 1.0, 0.0);
     glBegin(GL_POLYGON);
     double i;
@@ -19,7 +25,7 @@ void cylinder(float radius, float height, int sides)
         glVertex3d(radius * cos(t), height, radius * sin(t));
     }
     glEnd();
-    //‘¤–Ê
+    //å´é¢
     glBegin(GL_QUAD_STRIP);
     for (i = 0; i <= sides; i = i + 1) {
         double t = i * 2 * pi / sides;
@@ -28,7 +34,7 @@ void cylinder(float radius, float height, int sides)
         glVertex3f((GLfloat)(radius * cos(t)), height, (GLfloat)(radius * sin(t)));
     }
     glEnd();
-    //‰º–Ê
+    //ä¸‹é¢
     glNormal3d(0.0, -1.0, 0.0);
     glBegin(GL_POLYGON);
     for (i = sides; i >= 0; --i) {
@@ -37,40 +43,41 @@ void cylinder(float radius, float height, int sides)
     }
     glEnd();
 }
+//æ¨ªã®æ£’
 void cuboid(float width, float height, float depth)
 {
     glBegin(GL_QUADS);
-    //‘O
+    //å‰
     glNormal3f(0.0, 0.0, -1.0);
     glVertex3f(width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, -height / 2, depth / 2);
     glVertex3f(width / 2, -height / 2, depth / 2);
-    //¶
+    //å·¦
     glNormal3f(1.0, 0.0, 0.0);
     glVertex3f(width / 2, height / 2, depth / 2);
     glVertex3f(width / 2, height / 2, -depth / 2);
     glVertex3f(width / 2, -height / 2, -depth / 2);
     glVertex3f(width / 2, -height / 2, depth / 2);
-    //‰E
+    //å³
     glNormal3f(-1.0, 0.0, 0.0);
     glVertex3f(-width / 2, height / 2, -depth / 2);
     glVertex3f(-width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, -height / 2, depth / 2);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
-    //Œã
+    //å¾Œ
     glNormal3f(0.0, 0.0, 1.0);
     glVertex3f(width / 2, height / 2, -depth / 2);
     glVertex3f(-width / 2, height / 2, -depth / 2);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
     glVertex3f(width / 2, -height / 2, -depth / 2);
-    //ã
+    //ä¸Š
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, height / 2, -depth / 2);
     glVertex3f(width / 2, height / 2, -depth / 2);
-    //‰º
+    //ä¸‹
     glNormal3f(0.0, -1.0, 0.0);
     glVertex3f(width / 2, -height / 2, depth / 2);
     glVertex3f(-width / 2, -height / 2, depth / 2);
@@ -78,19 +85,20 @@ void cuboid(float width, float height, float depth)
     glVertex3f(width / 2, -height / 2, -depth / 2);
     glEnd();
 }
+//è¶³å…ƒ
 void stair(float width, float height, float depth)
 {
-    static const GLfloat color[] = { 1.0, 1, 1, 1.0 };  /* Ş¿ (F) */
-                                                        /* Ş¿‚Ìİ’è */
+    static const GLfloat color[] = { 1.0, 1, 1, 1.0 };  /* æè³ª (è‰²) */
+                                                        /* æè³ªã®è¨­å®š */
     //glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
-    /* ƒAƒ‹ƒtƒ@ƒeƒXƒgŠJn */
+    /* ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆé–‹å§‹ */
     //glEnable(GL_ALPHA_TEST);
-    /* ƒeƒNƒXƒ`ƒƒƒ}ƒbƒsƒ“ƒOŠJn */
+    /* ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ”ãƒ³ã‚°é–‹å§‹ */
     //glEnable(GL_TEXTURE_2D);
-    //glBindTexture(GL_TEXTURE_2D, texid_1);  // ƒeƒNƒXƒ`ƒƒID=1‚ğw’è
+    //glBindTexture(GL_TEXTURE_2D, texid_1);  // ãƒ†ã‚¯ã‚¹ãƒãƒ£ID=1ã‚’æŒ‡å®š
 
     glBegin(GL_QUADS);
-    //‘O
+    //å‰
     glNormal3f(0.0, 0.0, -1.0);
     glTexCoord2d(0.0, 1.0);
     glVertex3d(width / 2, height / 2, depth / 2);
@@ -100,7 +108,7 @@ void stair(float width, float height, float depth)
     glVertex3d(-width / 2, -height / 2, depth / 2);
     glTexCoord2d(0.0, 0.0);
     glVertex3d(width / 2, -height / 2, depth / 2);
-    //¶
+    //å·¦
     glNormal3f(1.0, 0.0, 0.0);
     glTexCoord2d(0.0, 1.0);
     glVertex3d(width / 2, height / 2, depth / 2);
@@ -110,7 +118,7 @@ void stair(float width, float height, float depth)
     glVertex3d(width / 2, -height / 2, -depth / 2);
     glTexCoord2d(0.0, 0.0);
     glVertex3d(width / 2, -height / 2, depth / 2);
-    //‰E
+    //å³
     glNormal3f(-1.0, 0.0, 0.0);
     glTexCoord2d(0.0, 1.0);
     glVertex3d(-width / 2, height / 2, -depth / 2);
@@ -120,7 +128,7 @@ void stair(float width, float height, float depth)
     glVertex3d(-width / 2, -height / 2, depth / 2);
     glTexCoord2d(0.0, 0.0);
     glVertex3d(-width / 2, -height / 2, -depth / 2);
-    //Œã
+    //å¾Œ
     glNormal3f(0.0, 0.0, 1.0);
     glTexCoord2d(0.0, 1.0);
     glVertex3d(width / 2, height / 2, -depth / 2);
@@ -130,7 +138,7 @@ void stair(float width, float height, float depth)
     glVertex3d(-width / 2, -height / 2, -depth / 2);
     glTexCoord2d(0.0, 0.0);
     glVertex3d(width / 2, -height / 2, -depth / 2);
-    //ã
+    //ä¸Š
     glNormal3f(0.0, 1.0, 0.0);
     glTexCoord2d(0.0, 1.0);
     glVertex3d(width / 2, height / 2, depth / 2);
@@ -140,7 +148,7 @@ void stair(float width, float height, float depth)
     glVertex3d(-width / 2, height / 2, -depth / 2);
     glTexCoord2d(0.0, 0.0);
     glVertex3d(width / 2, height / 2, -depth / 2);
-    //‰º
+    //ä¸‹
     glNormal3f(0.0, -1.0, 0.0);
     glTexCoord2d(0.0, 1.0);
     glVertex3d(width / 2, -height / 2, depth / 2);
@@ -161,17 +169,17 @@ void tori(int x, int y, int z, int i) {
     else
         glTranslatef(0.4 * (i - 180), 0.5 + 0.25 * (i - 180), -30);
 
-    //x’Œ‚»‚Ì1
+    //æ”¯æŸ±ãã®1
     glPushMatrix();
     glTranslatef(0.40 * sin(6.28 * x / 180), 0.2, 0.40 * cos(6.28 * z / 180));
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Red);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
     cylinder(0.06, 0.4, 10);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Black);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
     glTranslatef(0, -0.4, 0);
     cylinder(0.061, 0.08, 10);
     glPopMatrix();
 
-    //x’Œ‚»‚Ì2
+    //æ”¯æŸ±ãã®2
     glPushMatrix();
     glTranslatef(-0.40 * sin(6.28 * x / 180), 0.2, -0.40 * cos(6.28 * z / 180));
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Red);
@@ -181,7 +189,7 @@ void tori(int x, int y, int z, int i) {
     cylinder(0.061, 0.08, 10);
     glPopMatrix();
 
-    //‰¡‚Ì–_E‘«Œ³
+    //æ¨ªã®æ£’ãƒ»è¶³å…ƒ
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Red);
     glTranslatef(0, 0.56, 0);
@@ -198,14 +206,14 @@ void tori(int x, int y, int z, int i) {
 }
 
 void ground() {
-    static const GLfloat color[] = { 1, 1, 1, 1.0 };  /* Ş¿ (F) */
+    static const GLfloat color[] = { 1, 1, 1, 1.0 };  /* æè³ª (è‰²) */
                                           //255,82,52
     int i, j;
     for (i = -50; i < 50; i++) {
         for (j = -50; j < 50; j++) {
             glPushMatrix();
             glTranslatef(i, 0, j);
-            /* ‚P–‡‚Ì‚SŠpŒ`‚ğ•`‚­ */
+            /* ï¼‘æšã®ï¼”è§’å½¢ã‚’æã */
             glNormal3d(0.0, 0.0, 1.0);
             glBegin(GL_QUADS);
             glTexCoord2d(0.0, 1.0);
