@@ -10,6 +10,7 @@ C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(94
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(95,42): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(100,42): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(101,42): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(146,33): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(188,39): warning C4305: '引数': 'double' から 'GLclampf' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(163,17): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(142,9): warning C4101: 'i': ローカル変数は 1 度も使われていません。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(190,39): warning C4305: '引数': 'double' から 'GLclampf' へ切り詰めます。
   ImageExe2.vcxproj -> C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\Debug\ImageExe2.exe
