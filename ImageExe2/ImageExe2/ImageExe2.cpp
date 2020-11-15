@@ -128,7 +128,7 @@ void display(void)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
-    gluLookAt(0, 2, 0, 0, 2, -1, 0.0, 1.0, 0.0);
+    gluLookAt(0, 1.5, 0, 0, 2, -1, 0.0, 1.0, 0.0);
     glRotated(rx, 1, 0, 0);
     glRotated(ry, 0, 1, 0);
     //視点を移動
@@ -158,13 +158,11 @@ void display(void)
     //          tori(0, i, 0, i);
 
     //  }
-    glTranslatef(0, 0, 0);
-    
-    gate(0,0.2,0);
     glPopMatrix();
+    gate(-20,0.2,5);
 
     glutSwapBuffers();
-
+    
     switch (rs) {
     case 1:
         if (++rv >= 360) rv = 0;
@@ -174,16 +172,6 @@ void display(void)
         break;
     default:
         break;
-    }
-
-    /* 回転の制御 */
-    if (glutLayerGet(GLUT_NORMAL_DAMAGED) == 0) {
-        /* glutPostRedisplay() による再描画 */
-        if (++r >= 360) {
-            /* 一周回ったらアニメーションを止める */
-            r = 0;
-            //glutIdleFunc(0);
-        }
     }
 }
 void init() {

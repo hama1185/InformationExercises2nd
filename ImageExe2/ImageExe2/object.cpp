@@ -84,18 +84,18 @@ void cuboid(float width, float height, float depth)
 }
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-    cuboid(0.09 * 5, 0.015 * 5, 0.11 * 7);
+    cuboid(0.09 * 5, 0.015 * 12, 0.11 * 12);
     glTranslatef(0, 0.015 * 5, 0);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-    cuboid(0.07 * 5, 0.030 * 5, 0.11 * 7);
+    cuboid(0.07 * 5, 0.030 * 12, 0.11 * 12);
 
     for (int i = 0; i < (n - 1); i++) {
-        glTranslatef(0, 0.030 * 5, 0);
+        glTranslatef(0, 0.030 * 12 / 2, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-        cuboid(0.09 * 5, 0.015 * 5, 0.11 * 7);
-        glTranslatef(0, 0.015 * 5, 0);
+        cuboid(0.09 * 5, 0.015 * 12, 0.11 * 12);
+        glTranslatef(0, 0.015 * 12, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-        cuboid(0.07 * 5, 0.030 * 5, 0.11 * 7);
+        cuboid(0.07 * 5, 0.030 * 12, 0.11 * 12);
     }
 }
 //足元
@@ -245,7 +245,7 @@ void gate(float x, float y, float z) {
     cuboid(1, 0.08, 0.08);
     glTranslatef(0, -0.8, 0);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Gray);
-    stair(1.5, 0.4, 0.41);
+    //stair(1.5, 0.4, 0.41);
     glPopMatrix();
 
     glPopMatrix();
