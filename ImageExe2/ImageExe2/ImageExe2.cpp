@@ -2,39 +2,14 @@
 #include <math.h>
 #include <GL/glut.h>
 #include <stdio.h>
+#include "object.h"
 
 #define WIDTH 640
 #define HEIGHT 480
-
 float rx, ry, view_x, view_y, view_z;
 int rv = 0; //view回転
 int rs = 0; //回転スイッチ
 
-GLdouble vertex[][3] = {
-  { 0.0, 0.0, 0.0 },
-  { 1.0, 0.0, 0.0 },
-  { 1.0, 1.0, 0.0 },
-  { 0.0, 1.0, 0.0 },
-  { 0.0, 0.0, 1.0 },
-  { 1.0, 0.0, 1.0 },
-  { 1.0, 1.0, 1.0 },
-  { 0.0, 1.0, 1.0 }
-};
-
-int edge[][2] = {
-  { 0, 1 },
-  { 1, 2 },
-  { 2, 3 },
-  { 3, 0 },
-  { 4, 5 },
-  { 5, 6 },
-  { 6, 7 },
-  { 7, 4 },
-  { 0, 4 },
-  { 1, 5 },
-  { 2, 6 },
-  { 3, 7 }
-};
 
 double radians(double deg) {
     return deg * 3.14 / 180;
@@ -139,15 +114,12 @@ void keyboard(unsigned char key, int x, int y) {
     default:
         break;
     }
-
     glutPostRedisplay();
-
 }
 //特殊キーが押されたら
 void specialKey(int key, int x, int y) {
     glutPostRedisplay();
 }
-
 void display(void)
 {
     //設定
@@ -169,21 +141,24 @@ void display(void)
 
     int i;
     static int r = 0; /* 回転角 */
+    //描画
+    glPushMatrix();
+    glTranslatef(20, -0.251, -20);
+    ground();
 
-    /* 視点位置と視線方向 */
-    gluLookAt(3.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    glPushMatrix();
+    //	mqoCallModel(model);
+    glTranslatef(0, 0, -10);
+    for (i = 249; i >= 0; i--) {
+        if (i <= 90)
+            tori(i, 0, i, i);
+        else if (i < 180)
+            tori(i - 90, 0, i - 90, i);
+        else
+            tori(0, i, 0, i);
 
-    /* 図形の回転 */
-    glRotated((double)r, 0.0, 1.0, 0.0);
-
-    /* 図形の描画 */
-    glColor3d(0.0, 0.0, 0.0);
-    glBegin(GL_LINES);
-    for (i = 0; i < 12; i++) {
-        glVertex3dv(vertex[edge[i][0]]);
-        glVertex3dv(vertex[edge[i][1]]);
     }
-    glEnd();
+    glPopMatrix();
 
     glutSwapBuffers();
 
