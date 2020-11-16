@@ -84,18 +84,18 @@ void cuboid(float width, float height, float depth)
 }
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-    cuboid(0.09 * 5, 0.015 * 12, 0.11 * 12);
+    cuboid(0.09 * 5, 0.015 * 12, 0.11 * 25);
     glTranslatef(0, 0.015 * 5, 0);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-    cuboid(0.07 * 5, 0.030 * 12, 0.11 * 12);
+    cuboid(0.07 * 5, 0.030 * 12, 0.11 * 25);
 
     for (int i = 0; i < (n - 1); i++) {
         glTranslatef(0, 0.030 * 12 / 2, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-        cuboid(0.09 * 5, 0.015 * 12, 0.11 * 12);
+        cuboid(0.09 * 5, 0.015 * 12, 0.11 * 25);
         glTranslatef(0, 0.015 * 12, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-        cuboid(0.07 * 5, 0.030 * 12, 0.11 * 12);
+        cuboid(0.07 * 5, 0.030 * 12, 0.11 * 25);
     }
 }
 //足元
@@ -223,22 +223,22 @@ void gate(float x, float y, float z) {
     glTranslatef(x, y, z);
     glPushMatrix();
     //支柱その1
-    glTranslatef(0.255 * 5, 0, 0);
-    post(5);
+    glTranslatef(0.5 * 5, 0, 0);
+    post(10);
     glPopMatrix();
 
     //支柱その2
     glPushMatrix();
-    glTranslatef(-0.255 * 5, 0, 0);
-    post(5);
+    glTranslatef(-0.5 * 5, 0, 0);
+    post(10);
     glPopMatrix();
 
     //横の棒・足元
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
-    glTranslatef(0, 1.56, 0);
+    glTranslatef(0, 3.5, 0);
     //glRotatef(90 + 2 * x, 0, 1, 0);
-    cuboid(2.55, 0.12, 0.11 * 12);
+    cuboid(5, 0.12, 0.11 * 25);
     glPopMatrix();
 }
 
@@ -247,8 +247,8 @@ void ground() {
                                           //255,82,52
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Gray);
     int i, j;
-    for (i = -50; i < 50; i++) {
-        for (j = -50; j < 50; j++) {
+    for (i = -100; i < 100; i++) {
+        for (j = -100; j < 100; j++) {
             glPushMatrix();
             glTranslatef(i, 0, j);
             /* １枚の４角形を描く */

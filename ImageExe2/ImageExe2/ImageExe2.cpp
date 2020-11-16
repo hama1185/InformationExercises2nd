@@ -123,8 +123,10 @@ void specialKey(int key, int x, int y) {
 void display(void)
 {
     //設定
-    static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
-    static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
+    //static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
+    static GLfloat light0pos[] = { 0, 40, -20, 1 };
+    //static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
+    static GLfloat light1pos[] = { 0, 0, 1, 0 };
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
@@ -159,9 +161,9 @@ void display(void)
 
     //  }
     //glPopMatrix();
-    gate(0,0.2,-5);
+    gate(0,0.2,-10);
     //glPopMatrix();
-    gate(0, 0.2, -10);
+    gate(-30, 0.2, -50);
     glutSwapBuffers();
     
     switch (rs) {
