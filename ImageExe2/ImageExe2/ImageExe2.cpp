@@ -142,11 +142,11 @@ void display(void)
     int i;
     static int r = 0; /* 回転角 */
     //描画
-    glPushMatrix();
-    glTranslatef(20, 0, -20);
+    //glPushMatrix();
+    //glTranslatef(20, 0, -20);
     ground();
 
-    glPushMatrix();
+    // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);
     //  for (i = 249; i >= 0; i--) {
@@ -158,9 +158,10 @@ void display(void)
     //          tori(0, i, 0, i);
 
     //  }
-    glPopMatrix();
-    gate(-20,0.2,5);
-
+    //glPopMatrix();
+    gate(0,0.2,-5);
+    //glPopMatrix();
+    gate(0, 0.2, -10);
     glutSwapBuffers();
     
     switch (rs) {

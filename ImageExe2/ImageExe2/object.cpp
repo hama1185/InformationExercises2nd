@@ -8,7 +8,7 @@ GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat Gray[] = { 0.30, 0.30, 0.30, 1.0 };
 GLfloat BigPost[] = {0.752, 0.721, 0.564, 1.0 };
 GLfloat SmallPost[] = { 0.819, 0.745, 0.521, 1.0 };
-
+GLfloat Roof[] = {0.858, 0.596, 0.352};
 
 void cylinder(float radius, float height, int sides)
 {
@@ -219,17 +219,15 @@ void tori(int x, int y, int z, int i) {
 }
 
 void gate(float x, float y, float z) {
-    glPushMatrix();
     
     glTranslatef(x, y, z);
-    //支柱その1
     glPushMatrix();
+    //支柱その1
     glTranslatef(0.255 * 5, 0, 0);
     post(5);
     glPopMatrix();
 
     //支柱その2
-    glTranslatef(x, y, z);
     glPushMatrix();
     glTranslatef(-0.255 * 5, 0, 0);
     post(5);
@@ -237,23 +235,17 @@ void gate(float x, float y, float z) {
 
     //横の棒・足元
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Red);
-    glTranslatef(0, 0.56, 0);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
+    glTranslatef(0, 1.56, 0);
     //glRotatef(90 + 2 * x, 0, 1, 0);
-    cuboid(1, 0.12, 0.12);
-    glTranslatef(0, -0.2, 0);
-    cuboid(1, 0.08, 0.08);
-    glTranslatef(0, -0.8, 0);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Gray);
-    //stair(1.5, 0.4, 0.41);
-    glPopMatrix();
-
+    cuboid(2.55, 0.12, 0.11 * 12);
     glPopMatrix();
 }
 
 void ground() {
     static const GLfloat color[] = { 1, 1, 1, 1.0 };  /* 材質 (色) */
                                           //255,82,52
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Gray);
     int i, j;
     for (i = -50; i < 50; i++) {
         for (j = -50; j < 50; j++) {

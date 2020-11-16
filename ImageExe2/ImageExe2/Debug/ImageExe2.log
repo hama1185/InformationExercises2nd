@@ -1,16 +1,45 @@
-﻿  ImageExe2.cpp
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(59,39): warning C4244: '+=': 'double' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(68,15): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(69,15): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(82,42): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(83,42): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(88,42): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(89,42): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(94,42): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(95,42): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(100,42): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(101,42): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(162,19): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(142,9): warning C4101: 'i': ローカル変数は 1 度も使われていません。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\ImageExe2.cpp(178,39): warning C4305: '引数': 'double' から 'GLclampf' へ切り詰めます。
+﻿  object.cpp
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(8,42): warning C4305: '初期化中': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(9,47): warning C4305: '初期化中': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(10,50): warning C4305: '初期化中': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(11,38): warning C4305: '初期化中': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(87,43): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(88,33): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(90,43): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(93,42): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(95,47): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(96,38): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(98,47): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(179,77): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(179,32): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(181,79): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(181,33): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(183,43): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(183,26): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(187,56): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(187,77): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(187,23): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(189,27): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(191,28): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(192,29): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(197,58): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(197,79): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(197,24): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(199,27): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(201,28): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(202,29): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(208,28): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(209,18): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(210,25): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(211,28): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(212,25): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(213,28): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(215,25): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(226,33): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(232,34): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(239,28): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(241,33): warning C4305: '引数': 'double' から 'float' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(256,32): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(256,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
   ImageExe2.vcxproj -> C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\Debug\ImageExe2.exe
