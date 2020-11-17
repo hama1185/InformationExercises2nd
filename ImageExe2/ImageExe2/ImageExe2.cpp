@@ -123,12 +123,14 @@ void specialKey(int key, int x, int y) {
 void display(void)
 {
     //設定
-    static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
-    static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
+    //static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
+    static GLfloat light0pos[] = { 0, 40, -20, 1 };
+    //static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
+    static GLfloat light1pos[] = { 0, 0, 1, 0 };
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
-    gluLookAt(0, 2, 0, 0, 2, -1, 0.0, 1.0, 0.0);
+    gluLookAt(0, 1.5, 0, 0, 2, -1, 0.0, 1.0, 0.0);
     glRotated(rx, 1, 0, 0);
     glRotated(ry, 0, 1, 0);
     //視点を移動
@@ -142,26 +144,28 @@ void display(void)
     int i;
     static int r = 0; /* 回転角 */
     //描画
-    glPushMatrix();
-    glTranslatef(20, -0.251, -20);
+    //glPushMatrix();
+    //glTranslatef(20, 0, -20);
     ground();
 
-    glPushMatrix();
+    // glPushMatrix();
     //	mqoCallModel(model);
-    glTranslatef(0, 0, -10);
-    for (i = 249; i >= 0; i--) {
-        if (i <= 90)
-            tori(i, 0, i, i);
-        else if (i < 180)
-            tori(i - 90, 0, i - 90, i);
-        else
-            tori(0, i, 0, i);
+    //glTranslatef(0, 0, -10);
+    //  for (i = 249; i >= 0; i--) {
+    //      if (i <= 90)
+    //          tori(i, 0, i, i);
+    //      else if (i < 180)
+    //          tori(i - 90, 0, i - 90, i);
+    //      else
+    //          tori(0, i, 0, i);
 
-    }
-    glPopMatrix();
-
+    //  }
+    //glPopMatrix();
+    gate(0,0.2,-10);
+    //glPopMatrix();
+    gate(-30, 0.2, -50);
     glutSwapBuffers();
-
+    
     switch (rs) {
     case 1:
         if (++rv >= 360) rv = 0;
@@ -171,16 +175,6 @@ void display(void)
         break;
     default:
         break;
-    }
-
-    /* 回転の制御 */
-    if (glutLayerGet(GLUT_NORMAL_DAMAGED) == 0) {
-        /* glutPostRedisplay() による再描画 */
-        if (++r >= 360) {
-            /* 一周回ったらアニメーションを止める */
-            r = 0;
-            glutIdleFunc(0);
-        }
     }
 }
 void init() {
