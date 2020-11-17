@@ -161,9 +161,9 @@ void display(void)
 
     //  }
     //glPopMatrix();
-    gate(0,0.2,-10);
+    gate(0.0f, 0.2f ,-10.0f);
     //glPopMatrix();
-    gate(-30, 0.2, -50);
+    gate(-30.0f, 0.2f, -50.0f);
     glutSwapBuffers();
     
     switch (rs) {

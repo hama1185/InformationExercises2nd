@@ -6,9 +6,11 @@
 GLfloat Black[] = { 0, 0, 0, 1.0 };
 GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat Gray[] = { 0.30, 0.30, 0.30, 1.0 };
-GLfloat BigPost[] = {0.752, 0.721, 0.564, 1.0 };
+GLfloat BigPost[] = { 0.752, 0.721, 0.564, 1.0 };
 GLfloat SmallPost[] = { 0.819, 0.745, 0.521, 1.0 };
-GLfloat Roof[] = {0.858, 0.596, 0.352};
+GLfloat Roof[] = {0.858, 0.596, 0.352, 1.0};
+GLfloat Stone[] = { 0.517, 0.509, 0.4856 , 1.0};
+GLfloat Ground[] = {0.05, 0.619, 0.313, 1.0};
 
 void cylinder(float radius, float height, int sides)
 {
@@ -245,7 +247,7 @@ void gate(float x, float y, float z) {
 void ground() {
     static const GLfloat color[] = { 1, 1, 1, 1.0 };  /* 材質 (色) */
                                           //255,82,52
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Gray);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Ground);
     int i, j;
     for (i = -100; i < 100; i++) {
         for (j = -100; j < 100; j++) {
@@ -266,4 +268,8 @@ void ground() {
             glPopMatrix();
         }
     }
+}
+
+void stoneStep() {
+
 }
