@@ -163,7 +163,7 @@ void display(void)
     //glPopMatrix();
     gate(0.0f, 0.2f ,-10.0f);
     //glPopMatrix();
-    gate(-30.0f, 0.2f, -50.0f);
+    gate(-30.0f, 0.2f, -30.0f);
 
     glutSwapBuffers();
     

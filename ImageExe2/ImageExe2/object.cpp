@@ -86,18 +86,18 @@ void cuboid(float width, float height, float depth)
 }
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-    cuboid(0.09 * 5, 0.015 * 12, 0.11 * 25);
-    glTranslatef(0, 0.015 * 5, 0);
+    cuboid(0.09 * 5, 0.3 , 0.11 * 25);
+    glTranslatef(0, 0.3, 0);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-    cuboid(0.07 * 5, 0.030 * 12, 0.11 * 25);
+    cuboid(0.07 * 5, 0.6, 0.11 * 25);
 
     for (int i = 0; i < (n - 1); i++) {
-        glTranslatef(0, 0.030 * 12 / 2, 0);
+        glTranslatef(0, 0.3 / 2, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-        cuboid(0.09 * 5, 0.015 * 12, 0.11 * 25);
-        glTranslatef(0, 0.015 * 12, 0);
+        cuboid(0.09 * 5, 0.3, 0.11 * 25);
+        glTranslatef(0, 0.3, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-        cuboid(0.07 * 5, 0.030 * 12, 0.11 * 25);
+        cuboid(0.07 * 5, 0.6, 0.11 * 25);
     }
 }
 //足元
@@ -221,26 +221,27 @@ void tori(int x, int y, int z, int i) {
 }
 
 void gate(float x, float y, float z) {
-    
+    glPushMatrix();
     glTranslatef(x, y, z);
     glPushMatrix();
     //支柱その1
     glTranslatef(0.5 * 5, 0, 0);
-    post(10);
+    post(7);
     glPopMatrix();
 
     //支柱その2
     glPushMatrix();
     glTranslatef(-0.5 * 5, 0, 0);
-    post(10);
+    post(7);
     glPopMatrix();
 
     //横の棒・足元
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
-    glTranslatef(0, 3.5, 0);
+    glTranslatef(0, 3.2, 0);
     //glRotatef(90 + 2 * x, 0, 1, 0);
     cuboid(5, 0.12, 0.11 * 25);
+    glPopMatrix();
     glPopMatrix();
 }
 
@@ -271,22 +272,39 @@ void ground() {
 }
 
 void stoneStep() {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 40; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
-        glTranslatef(0, 0, -i);
-        //左
-        glPushMatrix();
-        glTranslatef(3.5, 0.75, 0);
-        //glRotatef(90, 0, 1, 0);
-        cuboid(1.0f, 1.5f, 1.0f);
-        glPopMatrix();
+        
+        if (i >= 30) {
+            glTranslatef(-i + 30.5, 0, -30);
+            glRotatef(90, 0, 1, 0);
+
+        }
+        else {
+            glTranslatef(0, 0, -i - 5);
+        }
         //右
         glPushMatrix();
-        glTranslatef(-3.5, 0.75, 0);
-        //glRotatef(90, 0, 1, 0);
-        cuboid(1.0f, 1.5f, 1.0f);
+        
+        glTranslatef(4.5, 1.25, 2);
+        if (i == 35) {
+            glTranslatef(0, 0, -2);
+            cuboid(1.0f, 2.5f, 5.0f);
+        }
+
+        else {
+            cuboid(1.0f, 2.5f, 1.0f);
+        }
         glPopMatrix();
+        
+        //左
+        if (i < 21 || i >= 35) {
+            glPushMatrix();
+            glTranslatef(-4.5, 1.25, 0);
+            cuboid(1.0f, 2.5f, 1.0f);
+            glPopMatrix();
+        }
 
         glPopMatrix();
     }
