@@ -86,18 +86,19 @@ void cuboid(float width, float height, float depth)
 }
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-    cuboid(0.09 * 5, 0.3 , 0.11 * 25);
     glTranslatef(0, 0.3, 0);
+    cuboid(0.8, 0.6 , 2.75);
+    glTranslatef(0, 0.5, 0);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-    cuboid(0.07 * 5, 0.6, 0.11 * 25);
+    cuboid(1.0, 0.4, 3);
 
     for (int i = 0; i < (n - 1); i++) {
-        glTranslatef(0, 0.3 / 2, 0);
+        glTranslatef(0, 0.5, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-        cuboid(0.09 * 5, 0.3, 0.11 * 25);
-        glTranslatef(0, 0.3, 0);
+        cuboid(0.8, 0.6, 2.75);
+        glTranslatef(0, 0.5, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-        cuboid(0.07 * 5, 0.6, 0.11 * 25);
+        cuboid(1.0, 0.4, 3);
     }
 }
 //足元
@@ -220,27 +221,27 @@ void tori(int x, int y, int z, int i) {
     glPopMatrix();
 }
 
-void gate(float x, float y, float z) {
+void gate(float x, float y, float z, float width, int height) {
     glPushMatrix();
     glTranslatef(x, y, z);
     glPushMatrix();
     //支柱その1
-    glTranslatef(0.5 * 5, 0, 0);
-    post(7);
+    glTranslatef(width / 2, 0, 0);//2.5
+    post(height);
     glPopMatrix();
 
     //支柱その2
     glPushMatrix();
-    glTranslatef(-0.5 * 5, 0, 0);
-    post(7);
+    glTranslatef(-width / 2, 0, 0);
+    post(height);
     glPopMatrix();
 
     //横の棒・足元
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
-    glTranslatef(0, 3.2, 0);
+    glTranslatef(0, height, 0);
     //glRotatef(90 + 2 * x, 0, 1, 0);
-    cuboid(5, 0.12, 0.11 * 25);
+    cuboid(width + 1, 0.12, 0.11 * 25);
     glPopMatrix();
     glPopMatrix();
 }
@@ -272,7 +273,7 @@ void ground() {
 }
 
 void stoneStep() {
-    for (int i = 0; i < 29; i++) {
+    for (int i = 0; i < 30; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
         
