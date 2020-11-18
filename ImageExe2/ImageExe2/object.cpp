@@ -272,7 +272,7 @@ void ground() {
 }
 
 void stoneStep() {
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 50; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
         
@@ -288,11 +288,14 @@ void stoneStep() {
         glPushMatrix();
         
         glTranslatef(4.5, 1.25, 2);
-        if (i == 35) {
-            glTranslatef(0, 0, -2);
-            cuboid(1.0f, 2.5f, 5.0f);
+        if (i == 29) {
+            glTranslatef(0, 0, -1);
+            cuboid(1.0f, 2.5f, 4.0f);
         }
-
+        else if (i == 30) {
+            glTranslatef(0, 0, 0.5);
+            cuboid(1.0f, 2.5f, 2.0f);
+        }
         else {
             cuboid(1.0f, 2.5f, 1.0f);
         }
