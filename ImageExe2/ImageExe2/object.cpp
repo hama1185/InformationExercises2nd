@@ -221,25 +221,25 @@ void tori(int x, int y, int z, int i) {
     glPopMatrix();
 }
 
-void gate(float x, float y, float z, float width) {
+void gate(float x, float y, float z, float width, int height) {
     glPushMatrix();
     glTranslatef(x, y, z);
     glPushMatrix();
     //支柱その1
     glTranslatef(width / 2, 0, 0);//2.5
-    post(4);
+    post(height);
     glPopMatrix();
 
     //支柱その2
     glPushMatrix();
     glTranslatef(-width / 2, 0, 0);
-    post(4);
+    post(height);
     glPopMatrix();
 
     //横の棒・足元
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
-    glTranslatef(0, 4.0, 0);
+    glTranslatef(0, height, 0);
     //glRotatef(90 + 2 * x, 0, 1, 0);
     cuboid(width + 1, 0.12, 0.11 * 25);
     glPopMatrix();
@@ -273,7 +273,7 @@ void ground() {
 }
 
 void stoneStep() {
-    for (int i = 0; i < 29; i++) {
+    for (int i = 0; i < 30; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
         
