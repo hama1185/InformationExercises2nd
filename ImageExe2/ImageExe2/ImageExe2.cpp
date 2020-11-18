@@ -147,7 +147,7 @@ void display(void)
     //glPushMatrix();
     //glTranslatef(20, 0, -20);
     ground();
-    stoneStep();
+    wayStoneStep();
     // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);

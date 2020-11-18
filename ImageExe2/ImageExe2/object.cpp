@@ -5,12 +5,12 @@
 
 GLfloat Black[] = { 0, 0, 0, 1.0 };
 GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
-GLfloat Gray[] = { 0.30, 0.30, 0.30, 1.0 };
-GLfloat BigPost[] = { 0.752, 0.721, 0.564, 1.0 };
-GLfloat SmallPost[] = { 0.819, 0.745, 0.521, 1.0 };
-GLfloat Roof[] = {0.858, 0.596, 0.352, 1.0};
-GLfloat Stone[] = { 0.517, 0.509, 0.4856 , 1.0};
-GLfloat Ground[] = {0.05, 0.619, 0.313, 1.0};
+GLfloat Gray[] = { 0.30f, 0.30f, 0.30f, 1.0f };
+GLfloat BigPost[] = { 0.752f, 0.721f, 0.564f, 1.0f };
+GLfloat SmallPost[] = { 0.819f, 0.745f, 0.521f, 1.0f };
+GLfloat Roof[] = {0.858f, 0.596f, 0.352f, 1.0f};
+GLfloat Stone[] = { 0.517f, 0.509f, 0.4856f , 1.0f};
+GLfloat Ground[] = {0.05f, 0.619f, 0.313f, 1.0f};
 
 void cylinder(float radius, float height, int sides)
 {
@@ -271,52 +271,68 @@ void ground() {
         }
     }
 }
-
-void stoneStep() {
-    for (int i = 0; i < 30; i++) {
+//道のりの石垣
+void wayStoneStep() {
+    for (int i = 0; i < 55; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
-        
-        if (i >= 20) {
+        if (i > 35) {
+            glTranslatef(-16.5, 0, -20-( i - 45 ));
+            glRotatef(-90, 0, 1, 0);
+        }
+        else if (i >= 20) {//横向きになるとき
             glTranslatef(-i + 20.5, 0, -20);
             glRotatef(90, 0, 1, 0);
-
         }
         else {
-            glTranslatef(0, 0, -i - 5);
+            glTranslatef(0, 0, -i - 5);//直進
         }
+
         //右
-        glPushMatrix();
-        
-        glTranslatef(4.5, 1.25, 0);
-        if (i >= 20) {
-            glTranslatef(10.0, 0, 0);
-            if (i == 20) {
-                glTranslatef(0, 0, 2.0);
-                cuboid(1.0f, 2.5f, 5.0f);
+        if (i < 30) {
+            glPushMatrix();
+
+            glTranslatef(4.5, 1.25, 0);
+            if (i >= 20) {
+                glTranslatef(10.0, 0, 0);//幅の調整
+                if (i == 20) {//前向きと右向きの境目
+                    glTranslatef(0, 0, 2.0);
+                    cuboid(1.0f, 2.5f, 5.0f);
+                }
+                else {
+                    cuboid(1.0f, 2.5f, 1.0f);
+                }
+            }
+
+            else if (i == 19) {//前向きと右向きの境目
+                glTranslatef(0, 0, -5);
+                cuboid(1.0f, 2.5f, 12.0f);
             }
             else {
                 cuboid(1.0f, 2.5f, 1.0f);
             }
+            glPopMatrix();
         }
-
-        else if (i == 19) {
-            glTranslatef(0, 0, -5);
-            cuboid(1.0f, 2.5f, 12.0f);
-        }
-        else {
-            cuboid(1.0f, 2.5f, 1.0f);
-        }
-        glPopMatrix();
+            
         
         //左
         if (i < 11 || i >= 25) {
             glPushMatrix();
-            glTranslatef(-4.5, 1.25, 0);
-            cuboid(1.0f, 2.5f, 1.0f);
+            if (i == 35) {
+                glTranslatef(-4.5, 1.25, 0.0);
+                cuboid(1.0f, 2.5f, 3.0f);
+            }
+            else {
+                glTranslatef(-4.5, 1.25, 0);
+                cuboid(1.0f, 2.5f, 1.0f);
+            }
             glPopMatrix();
         }
 
         glPopMatrix();
     }
+}
+//囲うための石垣
+void surroundStoneStep() {
+
 }
