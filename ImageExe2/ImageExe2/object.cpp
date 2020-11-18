@@ -271,5 +271,23 @@ void ground() {
 }
 
 void stoneStep() {
+    for (int i = 0; i < 10; i++) {
+        glPushMatrix();
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
+        glTranslatef(0, 0, -i);
+        //左
+        glPushMatrix();
+        glTranslatef(3.5, 0.75, 0);
+        //glRotatef(90, 0, 1, 0);
+        cuboid(1.0f, 1.5f, 1.0f);
+        glPopMatrix();
+        //右
+        glPushMatrix();
+        glTranslatef(-3.5, 0.75, 0);
+        //glRotatef(90, 0, 1, 0);
+        cuboid(1.0f, 1.5f, 1.0f);
+        glPopMatrix();
 
+        glPopMatrix();
+    }
 }

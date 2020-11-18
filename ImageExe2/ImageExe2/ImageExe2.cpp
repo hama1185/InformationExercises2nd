@@ -124,9 +124,9 @@ void display(void)
 {
     //設定
     //static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
-    static GLfloat light0pos[] = { 0, 40, -20, 1 };
+    static GLfloat light0pos[] = { 0, 40, -20, 1.0 };
     //static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
-    static GLfloat light1pos[] = { 0, 1, 20, 1 };
+    static GLfloat light1pos[] = { 0, 1, 20, 1.0 };
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
@@ -147,7 +147,7 @@ void display(void)
     //glPushMatrix();
     //glTranslatef(20, 0, -20);
     ground();
-
+    stoneStep();
     // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);
@@ -164,6 +164,7 @@ void display(void)
     gate(0.0f, 0.2f ,-10.0f);
     //glPopMatrix();
     gate(-30.0f, 0.2f, -50.0f);
+
     glutSwapBuffers();
     
     switch (rs) {
