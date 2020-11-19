@@ -273,10 +273,14 @@ void ground() {
 }
 //道のりの石垣
 void wayStoneStep() {
-    for (int i = 0; i < 55; i++) {
+    for (int i = 0; i <= 56; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
-        if (i > 35) {
+        if (i >= 55) {
+            glTranslatef(-16.5 - ( (double)i - 55 ), 0, -39.0f);
+            glRotatef(90, 0, 1, 0);
+        }
+        else if (i > 35) {
             glTranslatef(-16.5, 0, -20-( i - 45 ));
             glRotatef(-90, 0, 1, 0);
         }
@@ -334,5 +338,25 @@ void wayStoneStep() {
 }
 //囲うための石垣
 void surroundStoneStep() {
+    for (int i = 0; i < 25; i++) {
+        glPushMatrix();
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
+        glTranslatef(-12.5f, 0.0f, -35.5f - i);//直進  
 
+        //右
+        
+        glPushMatrix();
+
+        glTranslatef(5.0, 1.25, 0);
+        cuboid(1.0f, 2.5f, 1.0f);
+        glPopMatrix();
+        
+        //左
+        glPushMatrix();
+        glTranslatef(-5.0, 1.25, 0);
+        cuboid(1.0f, 2.5f, 1.0f);    
+        glPopMatrix();
+
+        glPopMatrix();
+    }
 }
