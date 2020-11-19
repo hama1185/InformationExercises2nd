@@ -11,6 +11,7 @@ GLfloat SmallPost[] = { 0.819f, 0.745f, 0.521f, 1.0f };
 GLfloat Roof[] = {0.858f, 0.596f, 0.352f, 1.0f};
 GLfloat Stone[] = { 0.517f, 0.509f, 0.4856f , 1.0f};
 GLfloat Ground[] = {0.05f, 0.619f, 0.313f, 1.0f};
+GLfloat Building[] = { 0.862f, 0.509f, 0.301, 1.0f};
 
 void cylinder(float radius, float height, int sides)
 {
@@ -83,6 +84,57 @@ void cuboid(float width, float height, float depth)
     glVertex3f(-width / 2, -height / 2, -depth / 2);
     glVertex3f(width / 2, -height / 2, -depth / 2);
     glEnd();
+}
+void building(float minLength, float maxLength, float depth, float height) {
+    float sideLength = sqrtf(powf(depth, 2) + powf((maxLength / 2 - minLength / 2), 2));
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glTranslatef(-12.5f, 0.0f, -70.0f);//直進
+    glBegin(GL_QUADS);
+    //前
+    glNormal3f(0.0, 0.0, -1.0);
+    glVertex3f(minLength / 2, height / 2, depth / 2);
+    glVertex3f(-minLength / 2, height / 2, depth / 2);
+    glVertex3f(-minLength / 2, -height / 2, depth / 2);
+    glVertex3f(minLength / 2, -height / 2, depth / 2);
+    //左
+    glNormal3f(1.0, 0.0, 0.0);
+    glVertex3f(sideLength / 2, height / 2, depth / 2);
+    glVertex3f(sideLength / 2, height / 2, -depth / 2);
+    glVertex3f(sideLength / 2, -height / 2, -depth / 2);
+    glVertex3f(sideLength / 2, -height / 2, depth / 2);
+    //右
+    glNormal3f(-1.0, 0.0, 0.0);
+    glVertex3f(-sideLength / 2, height / 2, -depth / 2);
+    glVertex3f(-sideLength / 2, height / 2, depth / 2);
+    glVertex3f(-sideLength / 2, -height / 2, depth / 2);
+    glVertex3f(-sideLength / 2, -height / 2, -depth / 2);
+    //後
+    glNormal3f(0.0, 0.0, 1.0);
+    glVertex3f(maxLength / 2, height / 2, -depth / 2);
+    glVertex3f(-maxLength / 2, height / 2, -depth / 2);
+    glVertex3f(-maxLength / 2, -height / 2, -depth / 2);
+    glVertex3f(maxLength / 2, -height / 2, -depth / 2);
+    //上
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(minLength / 2, height / 2, depth / 2);
+    glVertex3f(-minLength / 2, height / 2, depth / 2);
+    glVertex3f(-maxLength / 2, height / 2, -depth / 2);
+    glVertex3f(maxLength / 2, height / 2, -depth / 2);
+    //下
+    glNormal3f(0.0, -1.0, 0.0);
+    glVertex3f(minLength / 2, -height / 2, depth / 2);
+    glVertex3f(-minLength / 2, -height / 2, depth / 2);
+    glVertex3f(-maxLength / 2, -height / 2, -depth / 2);
+    glVertex3f(maxLength / 2, -height / 2, -depth / 2);
+    glEnd();
+}
+void protoBuilding() {
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
+    glTranslatef(-12.5f, 7.5f, -70.0f);//直進
+    cuboid(12, 15, 5);
+    glPopMatrix();
 }
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
@@ -338,7 +390,7 @@ void wayStoneStep() {
 }
 //囲うための石垣
 void surroundStoneStep() {
-    for (int i = 0; i < 25; i++) {
+    for (int i = 0; i < 30; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
         glTranslatef(-12.5f, 0.0f, -35.5f - i);//直進  

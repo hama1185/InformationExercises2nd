@@ -3,3 +3,5 @@ void ground();
 void wayStoneStep();
 void gate(float x,float y,float z, float width, int height);
 void surroundStoneStep();
+void building(float minLength, float maxLength, float depth, float height);
+void protoBuilding();
