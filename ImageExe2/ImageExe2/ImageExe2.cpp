@@ -56,7 +56,7 @@ void mouse(int button, int state, int x, int y)
 {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
         if (draged == 1) {//ドラッグが解除されたら
-            ry_center += xToRy(x) - ry;//視線の中心をズラす。
+            ry_center += (int)(xToRy(x) - ry);//視線の中心をズラす。
 
             draged = 0;
         }
@@ -65,8 +65,8 @@ void mouse(int button, int state, int x, int y)
 }
 //マウスが動いたら
 void mouseMoved(int x, int y) {
-    ry = xToRy(x);
-    rx = yToRx(y);
+    ry = (float)xToRy(x);
+    rx = (float)yToRx(y);
 
 }
 void keyboard(unsigned char key, int x, int y) {
@@ -79,26 +79,26 @@ void keyboard(unsigned char key, int x, int y) {
         exit(0);
     case 'a':
     case 'A':
-        view_z -= step * sin(radians(ry));
-        view_x -= step * cos(radians(ry));
+        view_z -= step * (float)sin(radians(ry));
+        view_x -= step * (float)cos(radians(ry));
         break;
 
     case 'd':
     case 'D':
-        view_z += step * sin(radians(ry));
-        view_x += step * cos(radians(ry));
+        view_z += step * (float)sin(radians(ry));
+        view_x += step * (float)cos(radians(ry));
         break;
 
     case 'w':
     case 'W':
-        view_z -= step * cos(radians(ry));
-        view_x += step * sin(radians(ry));
+        view_z -= step * (float)cos(radians(ry));
+        view_x += step * (float)sin(radians(ry));
         break;
 
     case 's':
     case 'S':
-        view_z += step * cos(radians(ry));
-        view_x -= step * sin(radians(ry));
+        view_z += step * (float)cos(radians(ry));
+        view_x -= step * (float)sin(radians(ry));
         break;
 
     case 'r':
@@ -124,9 +124,9 @@ void display(void)
 {
     //設定
     //static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
-    static GLfloat light0pos[] = { 0, 40, -20, 1 };
+    static GLfloat light0pos[] = { 0, 40, -20, 1.0 };
     //static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
-    static GLfloat light1pos[] = { 0, 0, 1, 0 };
+    static GLfloat light1pos[] = { 0, 1, 20, 1.0 };
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
@@ -136,18 +136,19 @@ void display(void)
     //視点を移動
     glTranslated(-view_x, view_y, -view_z);
     //	 光源の位置設定
-    glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
+    //glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
     glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
 
 
 
-    int i;
+    //int i;
     static int r = 0; /* 回転角 */
     //描画
     //glPushMatrix();
     //glTranslatef(20, 0, -20);
     ground();
-
+    wayStoneStep();
+    surroundStoneStep();
     // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);
@@ -161,9 +162,12 @@ void display(void)
 
     //  }
     //glPopMatrix();
-    gate(0,0.2,-10);
+    gate(0.0f, 0.2f ,-10.0f, 5.0f, 4);//手前
     //glPopMatrix();
-    gate(-30, 0.2, -50);
+    gate(-12.5f, 0.2f, -35.0f, 6.0f, 5);//奥
+
+    //building(12, 20, 5, 6);
+    protoBuilding();
     glutSwapBuffers();
     
     switch (rs) {
@@ -178,7 +182,7 @@ void display(void)
     }
 }
 void init() {
-    glClearColor(0.32, 0.75, 0.88, 1.0);
+    glClearColor(0.32f, 0.75f, 0.88f, 1.0f);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
