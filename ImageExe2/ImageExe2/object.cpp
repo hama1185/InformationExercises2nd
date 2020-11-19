@@ -116,29 +116,27 @@ void building(float minLength, float maxLength, float depth, float height) {
     glVertex3f(maxLength / 2, -height / 2, -depth / 2);
     glEnd();
     glPopMatrix();
-    //左
-    glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
-    glBegin(GL_QUADS);
-    glTranslatef(sideLength / 2, height / 2, 0.0f);
-    glRotatef(-(float)to_deg(atanf((maxLength / 2 - minLength / 2) /depth)), 0, 1, 0);
-    glVertex3f(sideLength / 2, height / 2, depth / 2);
-    glVertex3f(sideLength / 2, height / 2, -depth / 2);
-    glVertex3f(sideLength / 2, -height / 2, -depth / 2);
-    glVertex3f(sideLength / 2, -height / 2, depth / 2);
-    glEnd();
-    glPopMatrix();
-    
     //右
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
     glBegin(GL_QUADS);
-    glTranslatef(-sideLength / 2, height / 2, 0.0f);
-    glRotatef((float)to_deg(atanf((maxLength / 2 - minLength / 2) / depth)), 0, 1, 0);
-    glVertex3f(-sideLength / 2, height / 2, -depth / 2);
-    glVertex3f(-sideLength / 2, height / 2, depth / 2);
-    glVertex3f(-sideLength / 2, -height / 2, depth / 2);
-    glVertex3f(-sideLength / 2, -height / 2, -depth / 2);
+    glVertex3f(minLength / 2, height / 2, depth / 2);
+    glVertex3f(maxLength / 2, height / 2, -depth / 2);
+    glVertex3f(maxLength / 2, -height / 2, -depth / 2);
+    glVertex3f(minLength / 2, -height / 2, depth / 2);
+    glEnd();
+    glPopMatrix();
+    
+    //左
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 1.0);
+    glVertex3f(-maxLength / 2, height / 2, -depth / 2);
+    glVertex3f(-minLength / 2, height / 2, depth / 2);
+    glVertex3f(-minLength / 2, -height / 2, depth / 2);
+    glVertex3f(-maxLength / 2, -height / 2, -depth / 2);
+    
     glEnd();
     glPopMatrix();
     
@@ -147,6 +145,7 @@ void building(float minLength, float maxLength, float depth, float height) {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
     glBegin(GL_QUADS);
     glTranslatef(0.0f, height / 2, 0.0f);
+    glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(minLength / 2, height / 2, depth / 2);
     glVertex3f(-minLength / 2, height / 2, depth / 2);
     glVertex3f(-maxLength / 2, height / 2, -depth / 2);
@@ -159,6 +158,7 @@ void building(float minLength, float maxLength, float depth, float height) {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
     glBegin(GL_QUADS);
     glTranslatef(0.0f, -height / 2, 0.0f);
+    glNormal3f(0.0, -1.0, 0.0);
     glVertex3f(minLength / 2, -height / 2, depth / 2);
     glVertex3f(-minLength / 2, -height / 2, depth / 2);
     glVertex3f(-maxLength / 2, -height / 2, -depth / 2);
