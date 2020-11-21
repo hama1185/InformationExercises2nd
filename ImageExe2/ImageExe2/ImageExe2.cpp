@@ -148,6 +148,7 @@ void display(void)
     ground();
     wayStoneStep();
     surroundStoneStep();
+    signboard();
     // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);
