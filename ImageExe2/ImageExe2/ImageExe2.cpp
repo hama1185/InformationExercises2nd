@@ -123,10 +123,9 @@ void specialKey(int key, int x, int y) {
 void display(void)
 {
     //設定
-    //static GLfloat light0pos[] = { 0, 50.0, 50.0, 1.0 };
-    static GLfloat light0pos[] = { 0, 40, -20, 1.0 };
-    //static GLfloat light1pos[] = { -50.0, 50.0, 0, 1.0 };
-    static GLfloat light1pos[] = { 0, 1, 20, 1.0 };
+    static GLfloat light0pos[] = { -150, 50, 20, 1.0 };
+    static GLfloat light1pos[] = { 0, 0, 20, 1.0 };
+    static GLfloat light2pos[] = { -20, 40, 20, 1.0 };
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
@@ -136,9 +135,9 @@ void display(void)
     //視点を移動
     glTranslated(-view_x, view_y, -view_z);
     //	 光源の位置設定
-    //glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
-    glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
-
+    glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
+    //glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
+    //glLightfv(GL_LIGHT2, GL_POSITION, light2pos);
 
 
     //int i;
@@ -149,6 +148,7 @@ void display(void)
     ground();
     wayStoneStep();
     surroundStoneStep();
+    signboard();
     // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);
@@ -166,8 +166,8 @@ void display(void)
     //glPopMatrix();
     gate(-12.5f, 0.2f, -35.0f, 6.0f, 5);//奥
 
-    //building(12, 20, 5, 6);
-    protoBuilding();
+    building(12, 20, 5, 20);
+    //protoBuilding();
     glutSwapBuffers();
     
     switch (rs) {
