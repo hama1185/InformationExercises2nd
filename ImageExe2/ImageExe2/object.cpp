@@ -3,6 +3,8 @@
 #include <GL/glut.h>
 #include <stdio.h>
 
+#define PI 3.14159265
+
 GLfloat Black[] = { 0, 0, 0, 1.0 };
 GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat Gray[] = { 0.30f, 0.30f, 0.30f, 1.0f };
@@ -16,6 +18,7 @@ GLfloat Signboard[] = {0.98f, 0.99f, 1.0f, 1.0f};
 GLfloat Branch[] = {0.52f, 0.29f, 0.169f, 1.0f};
 GLfloat Leaf[] = {0.419f, 0.698f, 0.353f, 1.0f};
 GLfloat Loadway[] = {0.709f, 0.576f, 0.439f, 1.0f};
+GLfloat Ring[] = {0.827f, 0.847f, 0.780f, 1.0f};
 //GL_AMBIENT_AND_DIFFUSE
 //GL_FRONT_AND_BACK
 
@@ -95,6 +98,30 @@ void cuboid(float width, float height, float depth)
     glVertex3f(width / 2, -height / 2, -depth / 2);
     glEnd();
 }
+//トーラス
+void torus(int numc, int numt)
+{
+    int i, j, k;
+    double s, t, x, y, z, twopi;
+
+    twopi = 2 * PI;
+    for (i = 0; i < numc/2; i++) {
+        glBegin(GL_QUAD_STRIP);
+        for (j = 0; j <= numt; j++) {
+            for (k = 1; k >= 0; k--) {
+                s = (i + k) % numc + 0.5;
+                t = j % numt;
+
+                x = (1 + .1 * cos(s * twopi / numc)) * cos(t * twopi / numt);
+                y = (1 + .1 * cos(s * twopi / numc)) * sin(t * twopi / numt);
+                z = .1 * sin(s * twopi / numc);
+                glVertex3f(x, y, z);
+            }
+        }
+        glEnd();
+    }
+}
+
 void building(float minLength, float maxLength, float depth, float height) {
     float sideLength = sqrtf(powf(depth, 2) + powf((maxLength / 2 - minLength / 2), 2));
     glPushMatrix();
@@ -175,8 +202,18 @@ void building(float minLength, float maxLength, float depth, float height) {
     glEnd();
     glPopMatrix();
 
+    //torus(10,100);
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Ring);
+    glTranslatef(0, -5.5, 3.5);
+    glRotatef(90, 1, 0, 0);
+    glutSolidTorus(0.5, 5.0, 200, 8);
+    glPopMatrix();
+
     glPopMatrix();
 }
+//ステージ
+
 void protoBuilding() {
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
