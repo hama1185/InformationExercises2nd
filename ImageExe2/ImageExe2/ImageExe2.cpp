@@ -145,7 +145,9 @@ void display(void)
     //描画
     //glPushMatrix();
     //glTranslatef(20, 0, -20);
+    loadway();
     ground();
+    
     wayStoneStep();
     surroundStoneStep();
     signboard();

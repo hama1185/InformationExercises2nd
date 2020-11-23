@@ -15,6 +15,7 @@ GLfloat Building[] = { 0.862f, 0.509f, 0.301f, 1.0f};
 GLfloat Signboard[] = {0.98f, 0.99f, 1.0f, 1.0f};
 GLfloat Branch[] = {0.52f, 0.29f, 0.169f, 1.0f};
 GLfloat Leaf[] = {0.419f, 0.698f, 0.353f, 1.0f};
+GLfloat Loadway[] = {0.709f, 0.576f, 0.439f, 1.0f};
 //GL_AMBIENT_AND_DIFFUSE
 
 double to_deg(double r) {
@@ -354,7 +355,7 @@ void ground() {
             glPushMatrix();
             glTranslatef(i, 0, j);
             /* １枚の４角形を描く */
-            glNormal3d(0.0, 0.0, 1.0);
+            glNormal3d(0.0, 1.0, 0.0);
             glBegin(GL_QUADS);
             glTexCoord2d(0.0, 1.0);
             glVertex3d(0, 0, 0);
@@ -369,9 +370,71 @@ void ground() {
         }
     }
 }
-
+//道の作成
 void loadway() {
+    int i, j;
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Loadway);
+    for (i = -3; i < 3; i++) {
+        for (j = 0; j > -32; j--) {
+            glPushMatrix();
+            glTranslatef(i, 0, j);
+            /* １枚の４角形を描く */
+            glNormal3d(0.0, 1.0, 0.0);
+            glBegin(GL_QUADS);
+            glTexCoord2d(0.0, 1.0);
+            glVertex3d(0, 0, 0);
+            glTexCoord2d(1.0, 1.0);
+            glVertex3d(1.0, 0, 0);
+            glTexCoord2d(1.0, 0.0);
+            glVertex3d(1.0, 0, 1.0);
+            glTexCoord2d(0.0, 0.0);
+            glVertex3d(0, 0, 1.0);
+            glEnd();
+            glPopMatrix();
+        }
+    }
 
+    for (i = -3; i < 3; i++) {
+        for (j = 0; j > -16; j--) {
+            glPushMatrix();
+            glTranslatef(j, 0, i -29);
+            /* １枚の４角形を描く */
+            glNormal3d(0.0, 1.0, 0.0);
+            glBegin(GL_QUADS);
+            glTexCoord2d(0.0, 1.0);
+            glVertex3d(0, 0, 0);
+            glTexCoord2d(1.0, 1.0);
+            glVertex3d(1.0, 0, 0);
+            glTexCoord2d(1.0, 0.0);
+            glVertex3d(1.0, 0, 1.0);
+            glTexCoord2d(0.0, 0.0);
+            glVertex3d(0, 0, 1.0);
+            glEnd();
+            glPopMatrix();
+        }
+    }
+
+    for (i = -3; i < 3; i++) {
+        for (j = 0; j > -32; j--) {
+            glPushMatrix();
+            glTranslatef(i - 12.5, 0.1, j - 32);
+            /* １枚の４角形を描く */
+            glNormal3d(0.0, 1.0, 0.0);
+            glBegin(GL_QUADS);
+            glTexCoord2d(0.0, 1.0);
+            glVertex3d(0, 0, 0);
+            glTexCoord2d(1.0, 1.0);
+            glVertex3d(1.0, 0, 0);
+            glTexCoord2d(1.0, 0.0);
+            glVertex3d(1.0, 0, 1.0);
+            glTexCoord2d(0.0, 0.0);
+            glVertex3d(0, 0, 1.0);
+            glEnd();
+            glPopMatrix();
+        }
+    }
+    glPopMatrix();
 }
 //道のりの石垣
 void wayStoneStep() {
