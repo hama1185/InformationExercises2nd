@@ -17,6 +17,7 @@ GLfloat Branch[] = {0.52f, 0.29f, 0.169f, 1.0f};
 GLfloat Leaf[] = {0.419f, 0.698f, 0.353f, 1.0f};
 GLfloat Loadway[] = {0.709f, 0.576f, 0.439f, 1.0f};
 //GL_AMBIENT_AND_DIFFUSE
+//GL_FRONT_AND_BACK
 
 double to_deg(double r) {
     return r * 180.0 / (atan(1.0) * 4.0);
@@ -319,6 +320,188 @@ void tori(int x, int y, int z, int i) {
 
     glPopMatrix();
 }
+//gateの屋根の設計
+void roof(float width, float depth) {
+    glPushMatrix();
+
+    //前
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_POLYGON);
+    glNormal3f(0.0, 0.0, 1.0);
+    glVertex3f(width / 2, 0.0, depth / 2);
+    glVertex3f(width / 2, 0.6, depth / 2);
+    glVertex3f(width / 2 - 0.5, 0.6, depth / 2);
+    glVertex3f(width / 2 - 1.2, 1.5, depth / 2);
+    glVertex3f(-width / 2 + 1.2, 1.5, depth / 2);
+    glVertex3f(-width / 2 + 0.5, 0.6, depth / 2);
+    glVertex3f(-width / 2, 0.6, depth / 2);
+    glVertex3f(-width / 2, 0.0, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //後ろ
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_POLYGON);
+    glNormal3f(0.0, 0.0, -1.0);
+    glVertex3f(width / 2, 0.0, -depth / 2);
+    glVertex3f(width / 2, 0.6, -depth / 2);
+    glVertex3f(width / 2 - 0.5, 0.6, -depth / 2);
+    glVertex3f(width / 2 - 1.2, 1.5, -depth / 2);
+    glVertex3f(-width / 2 + 1.2, 1.5, -depth / 2);
+    glVertex3f(-width / 2 + 0.5, 0.6, -depth / 2);
+    glVertex3f(-width / 2, 0.6, -depth / 2);
+    glVertex3f(-width / 2, 0.0, -depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //右側面
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(1.0, 0.0, 0.0);
+    glVertex3f(width / 2, 0.6, depth / 2);
+    glVertex3f(width / 2, 0.6, -depth / 2);
+    glVertex3f(width / 2, 0.0, -depth / 2);
+    glVertex3f(width / 2, 0.0, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //右ヘリの横部分
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(width / 2, 0.6, depth / 2);
+    glVertex3f(width / 2, 0.6, -depth / 2);
+    glVertex3f(width / 2 - 0.5, 0.6, -depth / 2);
+    glVertex3f(width / 2 - 0.5, 0.6, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //右ヘリのななめ部分
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(1.0, 0.2, 0.0);
+    glVertex3f(width / 2 - 0.5, 0.6, -depth / 2);
+    glVertex3f(width / 2 - 0.5, 0.6, depth / 2);
+    glVertex3f(width / 2 - 1.2, 1.5, depth / 2);
+    glVertex3f(width / 2 - 1.2, 1.5, -depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //右屋根の上の部分
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(width / 2 - 1.2, 1.5, depth / 2);
+    glVertex3f(width / 2 - 1.2, 1.5, -depth / 2);
+    glVertex3f(width / 2 - 1.5, 1.5, -depth / 2);
+    glVertex3f(width / 2 - 1.5, 1.5, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //左側面
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(-1.0, 0.0, 0.0);
+    glVertex3f(-width / 2, 0.6, depth / 2);
+    glVertex3f(-width / 2, 0.6, -depth / 2);
+    glVertex3f(-width / 2, 0.0, -depth / 2);
+    glVertex3f(-width / 2, 0.0, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //左ヘリの横部分
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(-width / 2, 0.6, depth / 2);
+    glVertex3f(-width / 2, 0.6, -depth / 2);
+    glVertex3f(-width / 2 + 0.5, 0.6, -depth / 2);
+    glVertex3f(-width / 2 + 0.5, 0.6, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //左ヘリのななめ部分
+    glPushMatrix();
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(-1.0, 0.2, 0.0);
+    glVertex3f(-width / 2 + 0.5, 0.6, -depth / 2);
+    glVertex3f(-width / 2 + 0.5, 0.6, depth / 2);
+    glVertex3f(-width / 2 + 1.2, 1.5, depth / 2);
+    glVertex3f(-width / 2 + 1.2, 1.5, -depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //左屋根の上の部分
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(-width / 2 + 1.2, 1.5, depth / 2);
+    glVertex3f(-width / 2 + 1.2, 1.5, -depth / 2);
+    glVertex3f(-width / 2 + 1.5, 1.5, -depth / 2);
+    glVertex3f(-width / 2 + 1.5, 1.5, depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //奥の線1
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(-width / 2 + 1.5, 1.5, -depth / 2);
+    glVertex3f(-width / 2 + 1.5, 1.5, -depth / 2 + 0.4);
+    glVertex3f(width / 2 - 1.5, 1.5, -depth / 2 + 0.4);
+    glVertex3f(width / 2 - 1.5, 1.5, -depth / 2);
+    glEnd();
+    glPopMatrix();
+
+    //奥の線2
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(-width / 2 + 1.5, 1.5, -0.1625);
+    glVertex3f(-width / 2 + 1.5, 1.5, -0.4875);
+    glVertex3f(width / 2 - 1.5, 1.5, -0.4875);
+    glVertex3f(width / 2 - 1.5, 1.5, -0.1625);
+    glEnd();
+    glPopMatrix();
+
+    //前の線
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(-width / 2 + 1.5, 1.5, depth / 2);
+    glVertex3f(-width / 2 + 1.5, 1.5, depth / 2 - 0.4);
+    glVertex3f(width / 2 - 1.5, 1.5, depth / 2 - 0.4);
+    glVertex3f(width / 2 - 1.5, 1.5, depth / 2);
+    glEnd();
+    glPopMatrix();
+    
+    //前の線2
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glBegin(GL_QUADS);
+    glNormal3f(0.0, 1.0, 0.0);
+    glVertex3f(-width / 2 + 1.5, 1.5, 0.1625);
+    glVertex3f(-width / 2 + 1.5, 1.5, 0.4875);
+    glVertex3f(width / 2 - 1.5, 1.5, 0.4875);
+    glVertex3f(width / 2 - 1.5, 1.5, 0.1625);
+    glEnd();
+    glPopMatrix();
+
+    glPopMatrix();
+}
 
 void gate(float x, float y, float z, float width, int height) {
     glPushMatrix();
@@ -340,7 +523,8 @@ void gate(float x, float y, float z, float width, int height) {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glTranslatef(0, height, 0);
     //glRotatef(90 + 2 * x, 0, 1, 0);
-    cuboid(width + 1, 0.12, 0.11 * 25);
+    //cuboid(width + 1, 0.12, 0.11 * 25);
+    roof(width + 1, 0.11 * 25);
     glPopMatrix();
     glPopMatrix();
 }
