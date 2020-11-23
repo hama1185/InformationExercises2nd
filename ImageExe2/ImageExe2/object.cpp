@@ -13,6 +13,9 @@ GLfloat Stone[] = { 0.517f, 0.509f, 0.4856f , 1.0f};
 GLfloat Ground[] = {0.05f, 0.619f, 0.313f, 1.0f};
 GLfloat Building[] = { 0.862f, 0.509f, 0.301f, 1.0f};
 GLfloat Signboard[] = {0.98f, 0.99f, 1.0f, 1.0f};
+GLfloat Branch[] = {0.52f, 0.29f, 0.169f, 1.0f};
+GLfloat Leaf[] = {0.419f, 0.698f, 0.353f, 1.0f};
+//GL_AMBIENT_AND_DIFFUSE
 
 double to_deg(double r) {
     return r * 180.0 / (atan(1.0) * 4.0);
@@ -366,6 +369,10 @@ void ground() {
         }
     }
 }
+
+void loadway() {
+
+}
 //道のりの石垣
 void wayStoneStep() {
     for (int i = 0; i <= 56; i++) {
@@ -472,8 +479,91 @@ void signboard() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(0, 0.75f, 0);
-    cuboid(2.5f, 1.5f, 0.5f);
+    glTranslatef(0, 0.5f, 0);
+    cuboid(2.5f, 2.0f, 0.5f);
+    glPopMatrix();
+
+    glPopMatrix();
+}
+
+/*木の葉の描画*/
+void leaf() {
+    glPushMatrix();
+
+    /* 図形の色 (白) */
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Leaf);
+
+    /* 図形の描画 */
+    /* １枚の４角形を描く */
+    glNormal3d(0.0, 0.0, 1.0);
+    glBegin(GL_QUADS);
+    //glTexCoord2d(0.0, 1.0);
+    glVertex3d(-1.5, -1.5, 0.0);
+    //glTexCoord2d(1.0, 1.0);
+    glVertex3d(1.5, -1.5, 0.0);
+    //glTexCoord2d(1.0, 0.0);
+    glVertex3d(1.5, 1.5, 0.0);
+    //glTexCoord2d(0.0, 0.0);
+    glVertex3d(-1.5, 1.5, 0.0);
+    glEnd();
+
+    glPopMatrix();
+}
+
+/*木の描画*/
+void tree() {
+    int i;
+    /*葉の描画*/
+    for (i = 0; i < 10; i++) {
+        glPushMatrix();
+        glRotated((float)(360.0f / (20.0f * i)), 0.0, 1.0, 0.0);
+        glTranslated(0.0, 2.5, 0.0);
+        leaf();
+        glRotated(180, 0.0, 1.0, 0.0);
+        leaf();
+        glPopMatrix();
+    }
+    /*幹の描画*/
+    glPushMatrix();
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Branch);
+    cylinder(0.3f, 1.0f, 10);
+    glPopMatrix();
+}
+//木の配置
+void generateTree() {
+    glPushMatrix();
+    glTranslatef(-12.5f, 1.0f, -50.0f);
+    
+    glPushMatrix();
+    glTranslatef(-7.5f, 0.0f, 0.0f);
+    for (int i = 0; i < 4; i++) {
+        tree();
+        glTranslatef(0.0f, 0.0f, -4.0f);
+    }
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(7.5f, 0.0f, 0.0f);
+    for (int i = 0; i < 4; i++) {
+        tree();
+        glTranslatef(0.0f, 0.0f, -4.0f);
+    }
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-10.5f, 0.0f, -4.0f);
+    for (int i = 0; i < 2; i++) {
+        tree();
+        glTranslatef(0.0f, 0.0f, -4.0f);
+    }
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(10.5f, 0.0f, -4.0f);
+    for (int i = 0; i < 2; i++) {
+        tree();
+        glTranslatef(0.0f, 0.0f, -4.0f);
+    }
     glPopMatrix();
 
     glPopMatrix();
