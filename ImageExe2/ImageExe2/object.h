@@ -6,3 +6,5 @@ void surroundStoneStep();
 void building(float minLength, float maxLength, float depth, float height);
 void protoBuilding();
 void signboard();
+void tree();
+void generateTree();

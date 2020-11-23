@@ -149,6 +149,9 @@ void display(void)
     wayStoneStep();
     surroundStoneStep();
     signboard();
+    generateTree();
+    //tree();
+    
     // glPushMatrix();
     //	mqoCallModel(model);
     //glTranslatef(0, 0, -10);
