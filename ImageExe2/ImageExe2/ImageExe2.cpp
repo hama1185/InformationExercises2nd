@@ -171,7 +171,7 @@ void display(void)
     //glPopMatrix();
     gate(-12.5f, 0.2f, -35.0f, 6.0f, 5);//奥
 
-    building(18, 30, 5, 30);
+    building(18, 30, 5, 35);
     //protoBuilding();
     glutSwapBuffers();
     

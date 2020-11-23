@@ -205,9 +205,9 @@ void building(float minLength, float maxLength, float depth, float height) {
     //torus(10,100);
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Ring);
-    glTranslatef(0, -5.5, 3.5);
+    glTranslatef(0, -10.0, 2.5);
     glRotatef(90, 1, 0, 0);
-    glutSolidTorus(0.5, 5.0, 200, 8);
+    glutSolidTorus(0.5, 3.0, 200, 8);
     glPopMatrix();
 
     glPopMatrix();
