@@ -19,6 +19,7 @@ GLfloat Branch[] = {0.52f, 0.29f, 0.169f, 1.0f};
 GLfloat Leaf[] = {0.419f, 0.698f, 0.353f, 1.0f};
 GLfloat Loadway[] = {0.709f, 0.576f, 0.439f, 1.0f};
 GLfloat Ring[] = {0.827f, 0.847f, 0.780f, 1.0f};
+GLfloat Pillar[] = {0.227f, 0.251f, 0.384f, 1.0f};
 //GL_AMBIENT_AND_DIFFUSE
 //GL_FRONT_AND_BACK
 
@@ -122,6 +123,38 @@ void torus(int numc, int numt)
     }
 }
 
+void stage(){
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Ring);
+    glTranslatef(0.0f, 0.2f, 0.0f);
+    cylinder(3.0f, 0.2f, 20);
+    glPopMatrix();
+
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Pillar);
+    glTranslatef(2.5f, 3.5f, 0.3f);
+    cylinder(0.3f, 3.5f, 20);
+    glPopMatrix();
+
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Pillar);
+    glTranslatef(-2.5f, 3.5f, 0.3f);
+    cylinder(0.3f, 3.5f, 20);
+    glPopMatrix();
+
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Pillar);
+    glTranslatef(-1.5f, 3.9f, 2.3f);
+    cylinder(0.3f, 3.5f, 20);
+    glPopMatrix();
+
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Pillar);
+    glTranslatef(1.5f, 3.9f, 2.3f);
+    cylinder(0.3f, 3.5f, 20);
+    glPopMatrix();
+}
+
 void building(float minLength, float maxLength, float depth, float height) {
     float sideLength = sqrtf(powf(depth, 2) + powf((maxLength / 2 - minLength / 2), 2));
     glPushMatrix();
@@ -202,7 +235,7 @@ void building(float minLength, float maxLength, float depth, float height) {
     glEnd();
     glPopMatrix();
 
-    //torus(10,100);
+    //上のリング
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Ring);
     glTranslatef(0, -10.0, 2.5);
@@ -210,9 +243,14 @@ void building(float minLength, float maxLength, float depth, float height) {
     glutSolidTorus(0.5, 3.0, 200, 8);
     glPopMatrix();
 
+    //ステージ
+    glPushMatrix();
+    glTranslatef(0.0f, -17.5f, 2.5f);
+    stage();
+    glPopMatrix();
+
     glPopMatrix();
 }
-//ステージ
 
 void protoBuilding() {
     glPushMatrix();
