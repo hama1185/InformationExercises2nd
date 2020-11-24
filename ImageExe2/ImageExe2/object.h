@@ -8,3 +8,4 @@ void protoBuilding();
 void signboard();
 void tree();
 void generateTree();
+void loadway();
