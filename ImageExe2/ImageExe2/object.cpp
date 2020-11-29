@@ -62,7 +62,7 @@ void cuboid(float width, float height, float depth)
 {
     glBegin(GL_QUADS);
     //前
-    glNormal3f(0.0, 0.0, -1.0);
+    glNormal3f(0.0, 0.0, 1.0);
     glVertex3f(width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, height / 2, depth / 2);
     glVertex3f(-width / 2, -height / 2, depth / 2);
@@ -80,7 +80,7 @@ void cuboid(float width, float height, float depth)
     glVertex3f(-width / 2, -height / 2, depth / 2);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
     //後
-    glNormal3f(0.0, 0.0, 1.0);
+    glNormal3f(0.0, 0.0, -1.0);
     glVertex3f(width / 2, height / 2, -depth / 2);
     glVertex3f(-width / 2, height / 2, -depth / 2);
     glVertex3f(-width / 2, -height / 2, -depth / 2);

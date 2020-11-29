@@ -1,5 +1,4 @@
-﻿  ImageExe2.cpp
-  object.cpp
+﻿  object.cpp
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(119,34): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(119,31): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
@@ -132,6 +131,4 @@ C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(704,3
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(708,39): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(712,29): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(716,35): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-  コードを生成中...
-  LINK : 前回のインクリメンタル リンクで C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\Debug\ImageExe2.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
   ImageExe2.vcxproj -> C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\Debug\ImageExe2.exe
