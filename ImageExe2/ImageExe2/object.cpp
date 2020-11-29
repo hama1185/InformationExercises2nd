@@ -30,7 +30,7 @@ static const char texture1[] = "../texture/stones_256x256.raw";
 static const char texture2[] = "../texture/shibahu_256x256.raw";
 static const char texture3[] = "../texture/redleaf_341x256.raw";
 static const char texture4[] = "../texture/lake_342x256.raw";
-static const char texture5[] = "../texture/ground_276x183.raw";
+static const char texture5[] = "../texture/grandtexture255x255.raw";
 static const char texture6[] = "../texture/back_560x372.raw";
 
 #define TEX_W1 256
@@ -41,8 +41,8 @@ static const char texture6[] = "../texture/back_560x372.raw";
 #define TEX_H3 256
 #define TEX_W4 342
 #define TEX_H4 256
-#define TEX_W5 276
-#define TEX_H5 183
+#define TEX_W5 255
+#define TEX_H5 255
 #define TEX_W6 560
 #define TEX_H6 372
 
@@ -795,8 +795,13 @@ void gate(float x, float y, float z, float width, int height) {
 void ground() {
     static const GLfloat color[] = { 1, 1, 1, 1.0 };  /* 材質 (色) */
                                           //255,82,52
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Ground);
     int i, j;
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Ground);
+    /* アルファテスト開始 */
+    glEnable(GL_ALPHA_TEST);
+    /* テクスチャマッピング開始 */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texid_5);  // テクスチャID=1を指定
     for (i = -100; i < 100; i++) {
         for (j = -100; j < 100; j++) {
             glPushMatrix();
@@ -816,6 +821,9 @@ void ground() {
             glPopMatrix();
         }
     }
+    /* テクスチャマッピング終了 */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
 }
 //道の作成
 void loadway() {
@@ -888,6 +896,11 @@ void wayStoneStep() {
     for (int i = 0; i <= 56; i++) {
         glPushMatrix();
         glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
+        /* アルファテスト開始 */
+        glEnable(GL_ALPHA_TEST);
+        /* テクスチャマッピング開始 */
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texid_1);  // テクスチャID=1を指定
         if (i >= 55) {
             glTranslatef(-16.5 - ( (double)i - 55 ), 0, -39.0f);
             glRotatef(90, 0, 1, 0);
@@ -944,7 +957,9 @@ void wayStoneStep() {
             }
             glPopMatrix();
         }
-
+        /* テクスチャマッピング終了 */
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
         glPopMatrix();
     }
 }
@@ -1002,7 +1017,11 @@ void leaf() {
 
     /* 図形の色 (白) */
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Leaf);
-
+    /* アルファテスト開始 */
+    glEnable(GL_ALPHA_TEST);
+    /* テクスチャマッピング開始 */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texid_3);  // テクスチャID=1を指定
     /* 図形の描画 */
     /* １枚の４角形を描く */
     glNormal3d(0.0, 0.0, 1.0);
@@ -1016,7 +1035,9 @@ void leaf() {
     //glTexCoord2d(0.0, 0.0);
     glVertex3d(-1.5, 1.5, 0.0);
     glEnd();
-
+    /* テクスチャマッピング終了 */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 }
 

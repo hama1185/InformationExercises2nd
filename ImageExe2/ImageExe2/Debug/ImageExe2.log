@@ -115,17 +115,17 @@ C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(762,4
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(762,26): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(778,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
 C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(787,21): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(803,32): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(803,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(828,32): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(828,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(848,34): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(848,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(868,43): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(868,47): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(868,28): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(892,32): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(896,39): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(900,29): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
-C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(904,35): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(808,32): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(808,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(836,32): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(836,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(856,34): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(856,26): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(876,43): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(876,47): warning C4305: '引数': 'double' から 'GLfloat' へ切り詰めます。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(876,28): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(905,32): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(909,39): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(913,29): warning C4244: '引数': 'double' から 'GLfloat' への変換です。データが失われる可能性があります。
+C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\ImageExe2\object.cpp(917,35): warning C4244: '引数': 'int' から 'GLfloat' への変換です。データが失われる可能性があります。
   ImageExe2.vcxproj -> C:\Users\hamat\prog\InformationExercises2nd\ImageExe2\Debug\ImageExe2.exe
