@@ -1,3 +1,4 @@
+#pragma warning(disable : 4996)
 #include <stdlib.h>
 #include <math.h>
 #include <GL/glut.h>
@@ -22,6 +23,193 @@ GLfloat Ring[] = {0.827f, 0.847f, 0.780f, 1.0f};
 GLfloat Pillar[] = {0.227f, 0.251f, 0.384f, 1.0f};
 //GL_AMBIENT_AND_DIFFUSE
 //GL_FRONT_AND_BACK
+
+
+GLuint texid_1, texid_2, texid_3, texid_4, texid_5, texid_6;
+static const char texture1[] = "../texture/stones_256x256.raw";
+static const char texture2[] = "../texture/shibahu_256x256.raw";
+static const char texture3[] = "../texture/redleaf_341x256.raw";
+static const char texture4[] = "../texture/lake_342x256.raw";
+static const char texture5[] = "../texture/ground_276x183.raw";
+static const char texture6[] = "../texture/back_560x372.raw";
+
+#define TEX_W1 256
+#define TEX_H1 256
+#define TEX_W2 256
+#define TEX_H2 256
+#define TEX_W3 341
+#define TEX_H3 256
+#define TEX_W4 342
+#define TEX_H4 256
+#define TEX_W5 276
+#define TEX_H5 183
+#define TEX_W6 560
+#define TEX_H6 372
+
+void initTexture() {
+    /* テクスチャの読み込みに使う配列 */
+    GLubyte texture_buf1[TEX_H1][TEX_W1][4];
+    GLubyte texture_buf2[TEX_H2][TEX_W2][4];
+    GLubyte texture_buf3[TEX_H3][TEX_W3][4];
+    GLubyte texture_buf4[TEX_H4][TEX_W4][4];
+    GLubyte texture_buf5[TEX_H5][TEX_W5][4];
+    GLubyte texture_buf6[TEX_H6][TEX_W6][4];
+    FILE* fp;
+
+    /* テクスチャ画像(1枚目)の読み込み */
+    if ((fp = fopen(texture1, "rb")) != NULL) {
+        fread(texture_buf1, sizeof texture_buf1, 1, fp);
+        fclose(fp);
+    }
+    else {
+        perror(texture1);
+    }
+    /* テクスチャ画像(2枚目)の読み込み */
+    if ((fp = fopen(texture2, "rb")) != NULL) {
+        fread(texture_buf2, sizeof texture_buf2, 1, fp);
+        fclose(fp);
+    }
+    else {
+        perror(texture2);
+    }
+    /* テクスチャ画像(3枚目)の読み込み */
+    if ((fp = fopen(texture3, "rb")) != NULL) {
+        fread(texture_buf3, sizeof texture_buf3, 1, fp);
+        fclose(fp);
+    }
+    else {
+        perror(texture3);
+    }
+    /* テクスチャ画像(4枚目)の読み込み */
+    if ((fp = fopen(texture4, "rb")) != NULL) {
+        fread(texture_buf4, sizeof texture_buf4, 1, fp);
+        fclose(fp);
+    }
+    else {
+        perror(texture4);
+    }
+    /* テクスチャ画像(5枚目)の読み込み */
+    if ((fp = fopen(texture5, "rb")) != NULL) {
+        fread(texture_buf5, sizeof texture_buf5, 1, fp);
+        fclose(fp);
+    }
+    else {
+        perror(texture5);
+    }
+    /* テクスチャ画像(6枚目)の読み込み */
+    if ((fp = fopen(texture6, "rb")) != NULL) {
+        fread(texture_buf6, sizeof texture_buf6, 1, fp);
+        fclose(fp);
+    }
+    else {
+        perror(texture6);
+    }
+
+    ////////// 1枚目のテクスチャの読み込み ////////////
+    glGenTextures(1, &texid_1);  // テクスチャIDを生成
+    glBindTexture(GL_TEXTURE_2D, texid_1);  // 生成したテクスチャIDに切り替える
+    /* テクスチャ画像はバイト単位に詰め込まれている */
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    /* テクスチャの割り当て */
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W1, TEX_H1,  // 縦横サイズはテクスチャ1用
+        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf1);
+    /* テクスチャを拡大・縮小する方法の指定 */
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    /* テクスチャ環境 */
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
+     ////////////////////////////////////////////////////	
+
+    ////////// 2枚目のテクスチャの読み込み ////////////
+    glGenTextures(1, &texid_2);  // テクスチャIDを生成
+    glBindTexture(GL_TEXTURE_2D, texid_2);  // 生成したテクスチャIDに切り替える
+    /* テクスチャ画像はバイト単位に詰め込まれている */
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    /* テクスチャの割り当て */
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W2, TEX_H2,  // 縦横サイズはテクスチャ1用
+        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf2);
+    /* テクスチャを拡大・縮小する方法の指定 */
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    /* テクスチャ環境 */
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
+      ////////////////////////////////////////////////////	
+
+    ////////// 3枚目のテクスチャの読み込み ////////////
+    glGenTextures(1, &texid_3);  // テクスチャIDを生成
+    glBindTexture(GL_TEXTURE_2D, texid_3);  // 生成したテクスチャIDに切り替える
+    /* テクスチャ画像はバイト単位に詰め込まれている */
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    /* テクスチャの割り当て */
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W3, TEX_H3,  // 縦横サイズはテクスチャ1用
+        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf3);
+    /* テクスチャを拡大・縮小する方法の指定 */
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    /* テクスチャ環境 */
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
+      ////////////////////////////////////////////////////	
+
+    ////////// 4枚目のテクスチャの読み込み ////////////
+    glGenTextures(1, &texid_4);  // テクスチャIDを生成
+    glBindTexture(GL_TEXTURE_2D, texid_4);  // 生成したテクスチャIDに切り替える
+    /* テクスチャ画像はバイト単位に詰め込まれている */
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    /* テクスチャの割り当て */
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W4, TEX_H4,  // 縦横サイズはテクスチャ1用
+        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf4);
+    /* テクスチャを拡大・縮小する方法の指定 */
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    /* テクスチャ環境 */
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
+      ////////////////////////////////////////////////////	
+
+    ////////// 5枚目のテクスチャの読み込み ////////////
+    glGenTextures(1, &texid_5);  // テクスチャIDを生成
+    glBindTexture(GL_TEXTURE_2D, texid_5);  // 生成したテクスチャIDに切り替える
+    /* テクスチャ画像はバイト単位に詰め込まれている */
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    /* テクスチャの割り当て */
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W5, TEX_H5,  // 縦横サイズはテクスチャ1用
+        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf5);
+    /* テクスチャを拡大・縮小する方法の指定 */
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    /* テクスチャ環境 */
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
+      ////////////////////////////////////////////////////	
+
+    ////////// 6枚目のテクスチャの読み込み ////////////
+    glGenTextures(1, &texid_6);  // テクスチャIDを生成
+    glBindTexture(GL_TEXTURE_2D, texid_6);  // 生成したテクスチャIDに切り替える
+    /* テクスチャ画像はバイト単位に詰め込まれている */
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    /* テクスチャの割り当て */
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W6, TEX_H6,  // 縦横サイズはテクスチャ1用
+        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf6);
+    /* テクスチャを拡大・縮小する方法の指定 */
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    /* テクスチャ環境 */
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
+      ////////////////////////////////////////////////////
+
+#if 0
+      /* 混合する色の設定 */
+    static const GLfloat blend[] = { 0.0, 1.0, 0.0, 1.0 };
+    glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, blend);
+#endif
+
+    /* アルファテストの比較関数 */
+    glAlphaFunc(GL_GREATER, 0.5);
+}
 
 double to_deg(double r) {
     return r * 180.0 / (atan(1.0) * 4.0);
@@ -262,18 +450,18 @@ void protoBuilding() {
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
     glTranslatef(0, 0.3, 0);
-    cuboid(0.8, 0.6 , 2.75);
+    cuboid(0.8f, 0.6f , 2.75f);
     glTranslatef(0, 0.5, 0);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-    cuboid(1.0, 0.4, 3);
+    cuboid(1.0f, 0.4f, 3.0f);
 
     for (int i = 0; i < (n - 1); i++) {
         glTranslatef(0, 0.5, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-        cuboid(0.8, 0.6, 2.75);
+        cuboid(0.8f, 0.6f, 2.75f);
         glTranslatef(0, 0.5, 0);
         glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-        cuboid(1.0, 0.4, 3);
+        cuboid(1.0f, 0.4f, 3.0f);
     }
 }
 //足元
