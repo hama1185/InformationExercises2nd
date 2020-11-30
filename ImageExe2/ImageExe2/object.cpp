@@ -26,21 +26,21 @@ GLfloat Pillar[] = {0.227f, 0.251f, 0.384f, 1.0f};
 
 
 GLuint texid_1, texid_2, texid_3, texid_4, texid_5, texid_6;
-static const char texture1[] = "../texture/stone625x417.raw";
-static const char texture2[] = "../texture/shibahu_256x256.raw";
+static const char texture1[] = "../texture/stonetexture261x348.raw";
+static const char texture2[] = "../texture/loadTexture445x273.raw";
 static const char texture3[] = "../texture/leafTexture255x255.raw";
-static const char texture4[] = "../texture/lake_342x256.raw";
+static const char texture4[] = "../texture/stone625x417.raw";
 static const char texture5[] = "../texture/grandtexture255x255.raw";
 static const char texture6[] = "../texture/back_560x372.raw";
 
-#define TEX_W1 625
-#define TEX_H1 417
-#define TEX_W2 256
-#define TEX_H2 255
+#define TEX_W1 261
+#define TEX_H1 348
+#define TEX_W2 445
+#define TEX_H2 273
 #define TEX_W3 255
 #define TEX_H3 256
-#define TEX_W4 342
-#define TEX_H4 256
+#define TEX_W4 625
+#define TEX_H4 417
 #define TEX_W5 255
 #define TEX_H5 255
 #define TEX_W6 560
@@ -277,11 +277,11 @@ void stonepart(float width, float height, float depth) {
     glVertex3f(width / 2, -height / 2, depth / 2);
     //右
     glNormal3f(-1.0, 0.0, 0.0);
-    glTexCoord2d(0.0, 1.0);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-width / 2, height / 2, -depth / 2);
     glTexCoord2d(1.0, 1.0);
     glVertex3f(-width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(-width / 2, -height / 2, depth / 2);
     glTexCoord2d(0.0, 0.0);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
@@ -323,42 +323,67 @@ void stonepart(float width, float height, float depth) {
 //横の棒
 void cuboid(float width, float height, float depth)
 {   
+
     glBegin(GL_QUADS);
     //前
     glNormal3f(0.0, 0.0, 1.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-width / 2, -height / 2, depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(width / 2, -height / 2, depth / 2);
     //左
     glNormal3f(1.0, 0.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(width / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(width / 2, -height / 2, depth / 2);
     //右
     glNormal3f(-1.0, 0.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(-width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-width / 2, -height / 2, depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
     //後
     glNormal3f(0.0, 0.0, -1.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(width / 2, -height / 2, -depth / 2);
     //上
     glNormal3f(0.0, 1.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-width / 2, height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(width / 2, height / 2, -depth / 2);
     //下
     glNormal3f(0.0, -1.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(width / 2, -height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-width / 2, -height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-width / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(width / 2, -height / 2, -depth / 2);
     glEnd();
 }
@@ -517,6 +542,11 @@ void building(float minLength, float maxLength, float depth, float height) {
 
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
+    /* アルファテスト開始 */
+    glEnable(GL_ALPHA_TEST);
+    /* テクスチャマッピング開始 */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texid_4);
     glTranslatef(0, 0.3, 0);
     cuboid(0.8f, 0.6f , 2.75f);
     glTranslatef(0, 0.5, 0);
@@ -531,6 +561,9 @@ void post(int n) {//何段作るか
         glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
         cuboid(1.0f, 0.4f, 3.0f);
     }
+    /* テクスチャマッピング終了 */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
 }
 
 //gateの屋根の設計
@@ -780,6 +813,11 @@ void loadway() {
     int i, j;
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Loadway);
+    /* アルファテスト開始 */
+    //glEnable(GL_ALPHA_TEST);
+    /* テクスチャマッピング開始 */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texid_2);
     for (i = -3; i < 3; i++) {
         for (j = 0; j > -32; j--) {
             glPushMatrix();
@@ -839,6 +877,9 @@ void loadway() {
             glPopMatrix();
         }
     }
+    /* テクスチャマッピング終了 */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 }
 //道のりの石垣
@@ -917,13 +958,15 @@ void surroundStoneStep() {
         glPushMatrix();
 
         glTranslatef(5.0, 1.25, 0);
-        cuboid(1.0f, 2.5f, 1.0f);
+
+        stonepart(1.0f, 2.5f, 1.0f);
+        
         glPopMatrix();
         
         //左
         glPushMatrix();
         glTranslatef(-5.0, 1.25, 0);
-        cuboid(1.0f, 2.5f, 1.0f);    
+        stonepart(1.0f, 2.5f, 1.0f);
         glPopMatrix();
 
         glPopMatrix();
