@@ -26,18 +26,18 @@ GLfloat Pillar[] = {0.227f, 0.251f, 0.384f, 1.0f};
 
 
 GLuint texid_1, texid_2, texid_3, texid_4, texid_5, texid_6;
-static const char texture1[] = "../texture/stones_256x256.raw";
+static const char texture1[] = "../texture/stone625x417.raw";
 static const char texture2[] = "../texture/shibahu_256x256.raw";
-static const char texture3[] = "../texture/redleaf_341x256.raw";
+static const char texture3[] = "../texture/leafTexture255x255.raw";
 static const char texture4[] = "../texture/lake_342x256.raw";
 static const char texture5[] = "../texture/grandtexture255x255.raw";
 static const char texture6[] = "../texture/back_560x372.raw";
 
-#define TEX_W1 256
-#define TEX_H1 256
+#define TEX_W1 625
+#define TEX_H1 417
 #define TEX_W2 256
-#define TEX_H2 256
-#define TEX_W3 341
+#define TEX_H2 255
+#define TEX_W3 255
 #define TEX_H3 256
 #define TEX_W4 342
 #define TEX_H4 256
@@ -245,9 +245,84 @@ void cylinder(float radius, float height, int sides)
     }
     glEnd();
 }
+void stonepart(float width, float height, float depth) {
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
+    
+    /* アルファテスト開始 */
+    glEnable(GL_ALPHA_TEST);
+    /* テクスチャマッピング開始 */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texid_1);  // テクスチャID=1を指定
+    
+    glBegin(GL_QUADS);
+    //前
+    glNormal3f(0.0, 0.0, 1.0);
+    glTexCoord2d(0.0, 1.0);
+    glVertex3f(width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
+    glVertex3f(-width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
+    glVertex3f(-width / 2, -height / 2, depth / 2);
+    glTexCoord2d(0.0, 0.0);
+    glVertex3f(width / 2, -height / 2, depth / 2);
+    //左
+    glNormal3f(1.0, 0.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
+    glVertex3f(width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
+    glVertex3f(width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
+    glVertex3f(width / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
+    glVertex3f(width / 2, -height / 2, depth / 2);
+    //右
+    glNormal3f(-1.0, 0.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
+    glVertex3f(-width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 1.0);
+    glVertex3f(-width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
+    glVertex3f(-width / 2, -height / 2, depth / 2);
+    glTexCoord2d(0.0, 0.0);
+    glVertex3f(-width / 2, -height / 2, -depth / 2);
+    //後
+    glNormal3f(0.0, 0.0, -1.0);
+    glTexCoord2d(0.0, 1.0);
+    glVertex3f(width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 1.0);
+    glVertex3f(-width / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
+    glVertex3f(-width / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
+    glVertex3f(width / 2, -height / 2, -depth / 2);
+    //上
+    glNormal3f(0.0, 1.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
+    glVertex3f(width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
+    glVertex3f(-width / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
+    glVertex3f(-width / 2, height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
+    glVertex3f(width / 2, height / 2, -depth / 2);
+    //下
+    glNormal3f(0.0, -1.0, 0.0);
+    glTexCoord2d(0.0, 1.0);
+    glVertex3f(width / 2, -height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
+    glVertex3f(-width / 2, -height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
+    glVertex3f(-width / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
+    glVertex3f(width / 2, -height / 2, -depth / 2);
+    glEnd();
+    /* テクスチャマッピング終了 */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+}
 //横の棒
 void cuboid(float width, float height, float depth)
-{
+{   
     glBegin(GL_QUADS);
     //前
     glNormal3f(0.0, 0.0, 1.0);
@@ -895,12 +970,7 @@ void loadway() {
 void wayStoneStep() {
     for (int i = 0; i <= 56; i++) {
         glPushMatrix();
-        glMaterialfv(GL_FRONT, GL_DIFFUSE, Stone);
-        /* アルファテスト開始 */
-        glEnable(GL_ALPHA_TEST);
-        /* テクスチャマッピング開始 */
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, texid_1);  // テクスチャID=1を指定
+        
         if (i >= 55) {
             glTranslatef(-16.5 - ( (double)i - 55 ), 0, -39.0f);
             glRotatef(90, 0, 1, 0);
@@ -926,19 +996,19 @@ void wayStoneStep() {
                 glTranslatef(10.0, 0, 0);//幅の調整
                 if (i == 20) {//前向きと右向きの境目
                     glTranslatef(0, 0, 2.0);
-                    cuboid(1.0f, 2.5f, 5.0f);
+                    stonepart(1.0f, 2.5f, 5.0f);
                 }
                 else {
-                    cuboid(1.0f, 2.5f, 1.0f);
+                    stonepart(1.0f, 2.5f, 1.0f);
                 }
             }
 
             else if (i == 19) {//前向きと右向きの境目
                 glTranslatef(0, 0, -5);
-                cuboid(1.0f, 2.5f, 12.0f);
+                stonepart(1.0f, 2.5f, 12.0f);
             }
             else {
-                cuboid(1.0f, 2.5f, 1.0f);
+                stonepart(1.0f, 2.5f, 1.0f);
             }
             glPopMatrix();
         }
@@ -949,17 +1019,14 @@ void wayStoneStep() {
             glPushMatrix();
             if (i == 35) {
                 glTranslatef(-4.5, 1.25, 0.0);
-                cuboid(1.0f, 2.5f, 3.0f);
+                stonepart(1.0f, 2.5f, 3.0f);
             }
             else {
                 glTranslatef(-4.5, 1.25, 0);
-                cuboid(1.0f, 2.5f, 1.0f);
+                stonepart(1.0f, 2.5f, 1.0f);
             }
             glPopMatrix();
         }
-        /* テクスチャマッピング終了 */
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glDisable(GL_TEXTURE_2D);
         glPopMatrix();
     }
 }
@@ -1026,13 +1093,13 @@ void leaf() {
     /* １枚の４角形を描く */
     glNormal3d(0.0, 0.0, 1.0);
     glBegin(GL_QUADS);
-    //glTexCoord2d(0.0, 1.0);
+    glTexCoord2d(0.0, 1.0);
     glVertex3d(-1.5, -1.5, 0.0);
-    //glTexCoord2d(1.0, 1.0);
+    glTexCoord2d(1.0, 1.0);
     glVertex3d(1.5, -1.5, 0.0);
-    //glTexCoord2d(1.0, 0.0);
+    glTexCoord2d(1.0, 0.0);
     glVertex3d(1.5, 1.5, 0.0);
-    //glTexCoord2d(0.0, 0.0);
+    glTexCoord2d(0.0, 0.0);
     glVertex3d(-1.5, 1.5, 0.0);
     glEnd();
     /* テクスチャマッピング終了 */
