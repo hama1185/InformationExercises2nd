@@ -515,13 +515,6 @@ void building(float minLength, float maxLength, float depth, float height) {
     glPopMatrix();
 }
 
-void protoBuilding() {
-    glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
-    glTranslatef(-12.5f, 7.5f, -70.0f);//直進
-    cuboid(8, 15, 8);
-    glPopMatrix();
-}
 void post(int n) {//何段作るか
     glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
     glTranslatef(0, 0.3, 0);
@@ -539,125 +532,7 @@ void post(int n) {//何段作るか
         cuboid(1.0f, 0.4f, 3.0f);
     }
 }
-//足元
-void stair(float width, float height, float depth)
-{
-    static const GLfloat color[] = { 1.0, 1, 1, 1.0 };  /* 材質 (色) */
-                                                        /* 材質の設定 */
-    //glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
-    /* アルファテスト開始 */
-    //glEnable(GL_ALPHA_TEST);
-    /* テクスチャマッピング開始 */
-    //glEnable(GL_TEXTURE_2D);
-    //glBindTexture(GL_TEXTURE_2D, texid_1);  // テクスチャID=1を指定
 
-    glBegin(GL_QUADS);
-    //前
-    glNormal3f(0.0, 0.0, -1.0);
-    glTexCoord2d(0.0, 1.0);
-    glVertex3d(width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 1.0);
-    glVertex3d(-width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 0.0);
-    glVertex3d(-width / 2, -height / 2, depth / 2);
-    glTexCoord2d(0.0, 0.0);
-    glVertex3d(width / 2, -height / 2, depth / 2);
-    //左
-    glNormal3f(1.0, 0.0, 0.0);
-    glTexCoord2d(0.0, 1.0);
-    glVertex3d(width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 1.0);
-    glVertex3d(width / 2, height / 2, -depth / 2);
-    glTexCoord2d(1.0, 0.0);
-    glVertex3d(width / 2, -height / 2, -depth / 2);
-    glTexCoord2d(0.0, 0.0);
-    glVertex3d(width / 2, -height / 2, depth / 2);
-    //右
-    glNormal3f(-1.0, 0.0, 0.0);
-    glTexCoord2d(0.0, 1.0);
-    glVertex3d(-width / 2, height / 2, -depth / 2);
-    glTexCoord2d(1.0, 1.0);
-    glVertex3d(-width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 0.0);
-    glVertex3d(-width / 2, -height / 2, depth / 2);
-    glTexCoord2d(0.0, 0.0);
-    glVertex3d(-width / 2, -height / 2, -depth / 2);
-    //後
-    glNormal3f(0.0, 0.0, 1.0);
-    glTexCoord2d(0.0, 1.0);
-    glVertex3d(width / 2, height / 2, -depth / 2);
-    glTexCoord2d(1.0, 1.0);
-    glVertex3d(-width / 2, height / 2, -depth / 2);
-    glTexCoord2d(1.0, 0.0);
-    glVertex3d(-width / 2, -height / 2, -depth / 2);
-    glTexCoord2d(0.0, 0.0);
-    glVertex3d(width / 2, -height / 2, -depth / 2);
-    //上
-    glNormal3f(0.0, 1.0, 0.0);
-    glTexCoord2d(0.0, 1.0);
-    glVertex3d(width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 1.0);
-    glVertex3d(-width / 2, height / 2, depth / 2);
-    glTexCoord2d(1.0, 0.0);
-    glVertex3d(-width / 2, height / 2, -depth / 2);
-    glTexCoord2d(0.0, 0.0);
-    glVertex3d(width / 2, height / 2, -depth / 2);
-    //下
-    glNormal3f(0.0, -1.0, 0.0);
-    glTexCoord2d(0.0, 1.0);
-    glVertex3d(width / 2, -height / 2, depth / 2);
-    glTexCoord2d(1.0, 1.0);
-    glVertex3d(-width / 2, -height / 2, depth / 2);
-    glTexCoord2d(1.0, 0.0);
-    glVertex3d(-width / 2, -height / 2, -depth / 2);
-    glTexCoord2d(0.0, 0.0);
-    glVertex3d(width / 2, -height / 2, -depth / 2);
-    glEnd();
-}
-void tori(int x, int y, int z, int i) {
-    glPushMatrix();
-    if (i <= 90)
-        glTranslatef((float)10 * sin(6.28 * x / 180), (float)0.5, (float)10 * cos(6.28 * z / 180));
-    else if (i < 180)
-        glTranslatef((float)-10 * sin(6.28 * x / 180), (float)0.5, (float)-20 - 10 * cos(6.28 * z / 180));
-    else
-        glTranslatef(0.4 * (i - 180), 0.5 + 0.25 * (i - 180), -30);
-
-    //支柱その1
-    glPushMatrix();
-    glTranslatef(0.40 * sin(6.28 * x / 180), 0.2, 0.40 * cos(6.28 * z / 180));
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, BigPost);
-    cylinder(0.06, 0.4, 10);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, SmallPost);
-    glTranslatef(0, -0.4, 0);
-    cylinder(0.061, 0.08, 10);
-    glPopMatrix();
-
-    //支柱その2
-    glPushMatrix();
-    glTranslatef(-0.40 * sin(6.28 * x / 180), 0.2, -0.40 * cos(6.28 * z / 180));
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Red);
-    cylinder(0.06, 0.4, 10);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Black);
-    glTranslatef(0, -0.4, 0);
-    cylinder(0.061, 0.08, 10);
-    glPopMatrix();
-
-    //横の棒・足元
-    glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Red);
-    glTranslatef(0, 0.56, 0);
-    glRotatef(90 + 2 * x, 0, 1, 0);
-    cuboid(1, 0.12, 0.12);
-    glTranslatef(0, -0.2, 0);
-    cuboid(1, 0.08, 0.08);
-    glTranslatef(0, -0.8, 0);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Gray);
-    stair(1.5, 0.4, 0.41);
-    glPopMatrix();
-
-    glPopMatrix();
-}
 //gateの屋根の設計
 void roof(float width, float depth) {
     glPushMatrix();

@@ -124,8 +124,7 @@ void display(void)
 {
     //設定
     static GLfloat light0pos[] = { -150, 50, 20, 1.0 };
-    static GLfloat light1pos[] = { 0, 0, 20, 1.0 };
-    static GLfloat light2pos[] = { -20, 40, 20, 1.0 };
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //視点位置と視点方向
@@ -136,15 +135,9 @@ void display(void)
     glTranslated(-view_x, view_y, -view_z);
     //	 光源の位置設定
     glLightfv(GL_LIGHT0, GL_POSITION, light0pos);
-    //glLightfv(GL_LIGHT1, GL_POSITION, light1pos);
-    //glLightfv(GL_LIGHT2, GL_POSITION, light2pos);
-
-
-    //int i;
+    
     static int r = 0; /* 回転角 */
-    //描画
-    //glPushMatrix();
-    //glTranslatef(20, 0, -20);
+    
     loadway();
     ground();
     
@@ -152,27 +145,11 @@ void display(void)
     surroundStoneStep();
     signboard();
     generateTree();
-    //tree();
     
-    // glPushMatrix();
-    //	mqoCallModel(model);
-    //glTranslatef(0, 0, -10);
-    //  for (i = 249; i >= 0; i--) {
-    //      if (i <= 90)
-    //          tori(i, 0, i, i);
-    //      else if (i < 180)
-    //          tori(i - 90, 0, i - 90, i);
-    //      else
-    //          tori(0, i, 0, i);
-
-    //  }
-    //glPopMatrix();
     gate(0.0f, 0.2f ,-10.0f, 5.0f, 4);//手前
-    //glPopMatrix();
     gate(-12.5f, 0.2f, -35.0f, 6.0f, 5);//奥
 
     building(18, 30, 5, 35);
-    //protoBuilding();
     glutSwapBuffers();
     
     switch (rs) {
