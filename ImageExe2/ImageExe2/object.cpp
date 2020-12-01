@@ -6,6 +6,7 @@
 
 #define PI 3.14159265
 
+GLfloat White[] = { 1.0f,1.0f,1.0f,1.0f };
 GLfloat Black[] = { 0, 0, 0, 1.0 };
 GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
 GLfloat Gray[] = { 0.30f, 0.30f, 0.30f, 1.0f };
@@ -31,7 +32,7 @@ static const char texture2[] = "../texture/loadTexture445x273.raw";
 static const char texture3[] = "../texture/leafTexture255x255.raw";
 static const char texture4[] = "../texture/stone625x417.raw";
 static const char texture5[] = "../texture/grandtexture255x255.raw";
-static const char texture6[] = "../texture/back_560x372.raw";
+static const char texture6[] = "../texture/frontTexture273x523.raw";
 
 #define TEX_W1 261
 #define TEX_H1 348
@@ -43,8 +44,8 @@ static const char texture6[] = "../texture/back_560x372.raw";
 #define TEX_H4 417
 #define TEX_W5 255
 #define TEX_H5 255
-#define TEX_W6 560
-#define TEX_H6 372
+#define TEX_W6 273
+#define TEX_H6 523
 
 void initTexture() {
     /* テクスチャの読み込みに使う配列 */
@@ -447,28 +448,47 @@ void building(float minLength, float maxLength, float depth, float height) {
     float sideLength = sqrtf(powf(depth, 2) + powf((maxLength / 2 - minLength / 2), 2));
     glPushMatrix();
     glTranslatef(-12.5f, height / 2 + 0.1f, -70.0f);//直進
+
     //前
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, White);//後で変える
+    /* アルファテスト開始 */
+    glEnable(GL_ALPHA_TEST);
+    /* テクスチャマッピング開始 */
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texid_6);  // テクスチャID=1を指定
+    
     glBegin(GL_QUADS);
     glNormal3f(0.0, 0.0, 1.0);
     glTranslatef(0.0f, height / 2, depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(minLength / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-minLength / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-minLength / 2, -height / 2, depth / 2);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(minLength / 2, -height / 2, depth / 2);
     glEnd();
+    /* テクスチャマッピング終了 */
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+
     glPopMatrix();
-    
+
     //後
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
     glBegin(GL_QUADS);
     glNormal3f(0.0, 0.0, -1.0);
     glTranslatef(0.0f, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(maxLength / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-maxLength / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-maxLength / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(maxLength / 2, -height / 2, -depth / 2);
     glEnd();
     glPopMatrix();
@@ -477,9 +497,13 @@ void building(float minLength, float maxLength, float depth, float height) {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
     glBegin(GL_QUADS);
     glNormal3f(1.0, 0.0, 0.8);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(minLength / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(maxLength / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(maxLength / 2, -height / 2, -depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(minLength / 2, -height / 2, depth / 2);
     glEnd();
     glPopMatrix();
@@ -489,9 +513,13 @@ void building(float minLength, float maxLength, float depth, float height) {
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Building);//後で変える
     glBegin(GL_QUADS);
     glNormal3f(-1.0, 0.0, 0.8);
+    glTexCoord2d(0.0, 1.0);
     glVertex3f(-maxLength / 2, height / 2, -depth / 2);
+    glTexCoord2d(1.0, 1.0);
     glVertex3f(-minLength / 2, height / 2, depth / 2);
+    glTexCoord2d(1.0, 0.0);
     glVertex3f(-minLength / 2, -height / 2, depth / 2);
+    glTexCoord2d(0.0, 0.0);
     glVertex3f(-maxLength / 2, -height / 2, -depth / 2);
     
     glEnd();
