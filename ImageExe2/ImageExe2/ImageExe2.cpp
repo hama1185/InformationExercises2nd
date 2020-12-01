@@ -27,8 +27,6 @@ void resize(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    //glOrtho(-w/200,w/200,-h/200,h/200,-1,1);
-    //視野角,アスペクト比(ウィンドウの幅/高さ),描画する範囲(最も近い距離,最も遠い距離)
     gluPerspective(30.0, (double)w / (double)h, 1.0, 500.0);
 
     glMatrixMode(GL_MODELVIEW);

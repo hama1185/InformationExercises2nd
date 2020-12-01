@@ -8,8 +8,6 @@
 
 GLfloat White[] = { 1.0f,1.0f,1.0f,1.0f };
 GLfloat Window[] = { 0.59f, 0.803f, 0.87f, 1.0f };
-GLfloat Red[] = { 1.0, 0.0, 0.0, 1.0 };
-GLfloat Gray[] = { 0.30f, 0.30f, 0.30f, 1.0f };
 GLfloat BigPost[] = { 0.752f, 0.721f, 0.564f, 1.0f };
 GLfloat SmallPost[] = { 0.819f, 0.745f, 0.521f, 1.0f };
 GLfloat Roof[] = {0.858f, 0.596f, 0.352f, 1.0f};
@@ -22,18 +20,14 @@ GLfloat Leaf[] = {0.419f, 0.698f, 0.353f, 1.0f};
 GLfloat Loadway[] = {0.709f, 0.576f, 0.439f, 1.0f};
 GLfloat Ring[] = {0.827f, 0.847f, 0.780f, 1.0f};
 GLfloat Pillar[] = {0.227f, 0.251f, 0.384f, 1.0f};
-//GL_AMBIENT_AND_DIFFUSE
-//GL_FRONT_AND_BACK
 
-
-GLuint texid_1, texid_2, texid_3, texid_4, texid_5, texid_6, texid_7;
+GLuint texid_1, texid_2, texid_3, texid_4, texid_5, texid_6;
 static const char texture1[] = "../texture/stonetexture261x348.raw";
 static const char texture2[] = "../texture/loadTexture445x273.raw";
 static const char texture3[] = "../texture/leafTexture255x255.raw";
 static const char texture4[] = "../texture/stone625x417.raw";
 static const char texture5[] = "../texture/grandtexture255x255.raw";
 static const char texture6[] = "../texture/frontTexture273x523.raw";
-static const char texture7[] = "../texture/window225x252.raw";
 
 #define TEX_W1 261
 #define TEX_H1 348
@@ -47,8 +41,6 @@ static const char texture7[] = "../texture/window225x252.raw";
 #define TEX_H5 255
 #define TEX_W6 273
 #define TEX_H6 523
-#define TEX_W7 225
-#define TEX_H7 252
 
 void initTexture() {
     /* テクスチャの読み込みに使う配列 */
@@ -58,7 +50,6 @@ void initTexture() {
     GLubyte texture_buf4[TEX_H4][TEX_W4][4];
     GLubyte texture_buf5[TEX_H5][TEX_W5][4];
     GLubyte texture_buf6[TEX_H6][TEX_W6][4];
-    GLubyte texture_buf7[TEX_H7][TEX_W7][4];
     FILE* fp;
 
     /* テクスチャ画像(1枚目)の読み込み */
@@ -108,14 +99,6 @@ void initTexture() {
     }
     else {
         perror(texture6);
-    }
-    /* テクスチャ画像(7枚目)の読み込み */
-    if ((fp = fopen(texture6, "rb")) != NULL) {
-        fread(texture_buf7, sizeof texture_buf7, 1, fp);
-        fclose(fp);
-    }
-    else {
-        perror(texture7);
     }
 
     ////////// 1枚目のテクスチャの読み込み ////////////
@@ -206,22 +189,6 @@ void initTexture() {
     /* テクスチャの割り当て */
     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W6, TEX_H6,  // 縦横サイズはテクスチャ1用
         GL_RGBA, GL_UNSIGNED_BYTE, texture_buf6);
-    /* テクスチャを拡大・縮小する方法の指定 */
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    /* テクスチャ環境 */
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glBindTexture(GL_TEXTURE_2D, 0);  // デフォルトにテクスチャIDに切り替える
-      ////////////////////////////////////////////////////
-
-    ////////// 7枚目のテクスチャの読み込み ////////////
-    glGenTextures(1, &texid_7);  // テクスチャIDを生成
-    glBindTexture(GL_TEXTURE_2D, texid_7);  // 生成したテクスチャIDに切り替える
-    /* テクスチャ画像はバイト単位に詰め込まれている */
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
-    /* テクスチャの割り当て */
-    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, TEX_W7, TEX_H7,  // 縦横サイズはテクスチャ1用
-        GL_RGBA, GL_UNSIGNED_BYTE, texture_buf7);
     /* テクスチャを拡大・縮小する方法の指定 */
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -479,12 +446,12 @@ void building(float minLength, float maxLength, float depth, float height) {
 
     //前
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, White);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, White);
     /* アルファテスト開始 */
     glEnable(GL_ALPHA_TEST);
     /* テクスチャマッピング開始 */
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texid_6);  // テクスチャID=1を指定
+    glBindTexture(GL_TEXTURE_2D, texid_6);  // テクスチャID=6を指定
     
     glBegin(GL_QUADS);
     glNormal3f(0.0, 0.0, 1.0);
@@ -651,7 +618,7 @@ void roof(float width, float depth) {
 
     //前
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_POLYGON);
     glNormal3f(0.0, 0.0, 1.0);
     glVertex3f(width / 2, 0.0, depth / 2);
@@ -667,7 +634,7 @@ void roof(float width, float depth) {
 
     //後ろ
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_POLYGON);
     glNormal3f(0.0, 0.0, -1.0);
     glVertex3f(width / 2, 0.0, -depth / 2);
@@ -683,7 +650,7 @@ void roof(float width, float depth) {
 
     //右側面
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(1.0, 0.0, 0.0);
     glVertex3f(width / 2, 0.6, depth / 2);
@@ -695,7 +662,7 @@ void roof(float width, float depth) {
 
     //右ヘリの横部分
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(width / 2, 0.6, depth / 2);
@@ -707,7 +674,7 @@ void roof(float width, float depth) {
 
     //右ヘリのななめ部分
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(1.0, 0.2, 0.0);
     glVertex3f(width / 2 - 0.5, 0.6, -depth / 2);
@@ -719,7 +686,7 @@ void roof(float width, float depth) {
 
     //右屋根の上の部分
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(width / 2 - 1.2, 1.5, depth / 2);
@@ -731,7 +698,7 @@ void roof(float width, float depth) {
 
     //左側面
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(-1.0, 0.0, 0.0);
     glVertex3f(-width / 2, 0.6, depth / 2);
@@ -743,7 +710,7 @@ void roof(float width, float depth) {
 
     //左ヘリの横部分
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(-width / 2, 0.6, depth / 2);
@@ -755,7 +722,7 @@ void roof(float width, float depth) {
 
     //左ヘリのななめ部分
     glPushMatrix();
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(-1.0, 0.2, 0.0);
     glVertex3f(-width / 2 + 0.5, 0.6, -depth / 2);
@@ -767,7 +734,7 @@ void roof(float width, float depth) {
 
     //左屋根の上の部分
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(-width / 2 + 1.2, 1.5, depth / 2);
@@ -779,7 +746,7 @@ void roof(float width, float depth) {
 
     //奥の線1
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(-width / 2 + 1.5, 1.5, -depth / 2);
@@ -791,7 +758,7 @@ void roof(float width, float depth) {
 
     //奥の線2
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(-width / 2 + 1.5, 1.5, -0.1625);
@@ -803,7 +770,7 @@ void roof(float width, float depth) {
 
     //前の線
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(-width / 2 + 1.5, 1.5, depth / 2);
@@ -815,7 +782,7 @@ void roof(float width, float depth) {
     
     //前の線2
     glPushMatrix();
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);//後で変える
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glBegin(GL_QUADS);
     glNormal3f(0.0, 1.0, 0.0);
     glVertex3f(-width / 2 + 1.5, 1.5, 0.1625);
@@ -833,7 +800,7 @@ void gate(float x, float y, float z, float width, int height) {
     glTranslatef(x, y, z);
     glPushMatrix();
     //支柱その1
-    glTranslatef(width / 2, 0, 0);//2.5
+    glTranslatef(width / 2, 0, 0);
     post(height);
     glPopMatrix();
 
@@ -847,23 +814,19 @@ void gate(float x, float y, float z, float width, int height) {
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Roof);
     glTranslatef(0, height, 0);
-    //glRotatef(90 + 2 * x, 0, 1, 0);
-    //cuboid(width + 1, 0.12, 0.11 * 25);
     roof(width + 1, 0.11 * 25);
     glPopMatrix();
     glPopMatrix();
 }
 
 void ground() {
-    static const GLfloat color[] = { 1, 1, 1, 1.0 };  /* 材質 (色) */
-                                          //255,82,52
     int i, j;
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Ground);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, White);
     /* アルファテスト開始 */
     glEnable(GL_ALPHA_TEST);
     /* テクスチャマッピング開始 */
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texid_5);  // テクスチャID=1を指定
+    glBindTexture(GL_TEXTURE_2D, texid_5);  // テクスチャID=5を指定
     for (i = -100; i < 100; i++) {
         for (j = -100; j < 100; j++) {
             glPushMatrix();
@@ -892,8 +855,6 @@ void loadway() {
     int i, j;
     glPushMatrix();
     glMaterialfv(GL_FRONT, GL_DIFFUSE, Loadway);
-    /* アルファテスト開始 */
-    //glEnable(GL_ALPHA_TEST);
     /* テクスチャマッピング開始 */
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texid_2);
@@ -1085,7 +1046,7 @@ void leaf() {
     glEnable(GL_ALPHA_TEST);
     /* テクスチャマッピング開始 */
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texid_3);  // テクスチャID=1を指定
+    glBindTexture(GL_TEXTURE_2D, texid_3);  // テクスチャID=3を指定
     /* 図形の描画 */
     /* １枚の４角形を描く */
     glNormal3d(0.0, 0.0, 1.0);
