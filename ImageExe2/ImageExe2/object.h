@@ -9,3 +9,4 @@ void signboard();
 void tree();
 void generateTree();
 void loadway();
+void initTexture();
